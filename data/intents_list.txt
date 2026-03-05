@@ -1,0 +1,6 @@
+Technical_Issue
+Academic_Query
+Financial_Issue
+Hostel_Complaint
+Administrative_Request
+General_Inquiry
