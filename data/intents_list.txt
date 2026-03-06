@@ -1,6 +1,11 @@
-Technical_Issue
-Academic_Query
-Financial_Issue
-Hostel_Complaint
-Administrative_Request
-General_Inquiry
+Academics
+Admissions
+Examination
+Fees and Account
+International affair
+IT
+Residential services
+Security and safety
+Placements
+Division of Research and Development
+Library

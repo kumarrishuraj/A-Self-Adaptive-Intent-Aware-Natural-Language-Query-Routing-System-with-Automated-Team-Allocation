@@ -1,0 +1,288 @@
+query,intent
+How can I reset my university email password?,IT
+Campus WiFi is not working properly,IT
+Internet speed is very slow on campus,IT
+I forgot my UMS password,IT
+UMS portal login error is showing,IT
+LAN connection in lab is not working,IT
+University email is not accessible,IT
+WiFi disconnects frequently in hostel,IT
+How can I configure campus WiFi?,IT
+IP phone in department is not working,IT
+How can I report network issues?,IT
+Software portal is not loading,IT
+Need help with university login credentials,IT
+How to change email password?,IT
+Internet not working in classroom,IT
+WiFi signals are weak in my block,IT
+Unable to access student portal,IT
+How to contact IT support?,IT
+Need special network access for research,IT
+Technical issue with university system,IT
+How do I apply for admission?,Admissions
+Where can I upload admission documents?,Admissions
+Admission payment is pending,Admissions
+How to check admission status?,Admissions
+What is admission eligibility?,Admissions
+How can I contact admission office?,Admissions
+How to correct admission form details?,Admissions
+Is financial aid available during admission?,Admissions
+What entrance exam is required?,Admissions
+How to apply for scholarship at admission?,Admissions
+How to request admission refund?,Admissions
+Admission documents show pending,Admissions
+How to transfer program after admission?,Admissions
+Admission counseling schedule?,Admissions
+Admission fee payment failed,Admissions
+How to change admission program?,Admissions
+How to update admission details?,Admissions
+Admission deadline for application?,Admissions
+Admission referral policy details?,Admissions
+Need help with accommodation disclosure,Admissions
+When will exam results be declared?,Examination
+How to apply for re‑evaluation?,Examination
+How to apply for exam scrutiny?,Examination
+Exam seating plan details?,Examination
+How to register for reappear exam?,Examination
+Exam timetable not visible,Examination
+How to improve exam marks?,Examination
+Exam registration issue,Examination
+Capstone result status?,Examination
+Internship exam result?,Examination
+Dissertation evaluation result?,Examination
+Viva seating plan?,Examination
+How to request exam correction?,Examination
+Exam attendance issue?,Examination
+Exam improvement registration?,Examination
+Theory exam schedule?,Examination
+Where to check grade sheet?,Examination
+Exam portal not updating marks,Examination
+How to apply for exam rechecking?,Examination
+Need help with exam form submission,Examination
+How to download fee receipt?,Fees_and_Account
+Tuition fee not updated,Fees_and_Account
+How to request fee refund?,Fees_and_Account
+Where to check fee structure?,Fees_and_Account
+How to get fee certificate?,Fees_and_Account
+Scholarship payment pending,Fees_and_Account
+Hostel fee not updated,Fees_and_Account
+How to apply for reimbursement?,Fees_and_Account
+Need demand letter for loan,Fees_and_Account
+How to check semester fee breakdown?,Fees_and_Account
+Fee portal showing error,Fees_and_Account
+How to download fee schedule?,Fees_and_Account
+How to apply for financial assistance?,Fees_and_Account
+How to check payment history?,Fees_and_Account
+Refund after program withdrawal?,Fees_and_Account
+Need official fee document,Fees_and_Account
+Late fee charged incorrectly,Fees_and_Account
+How to update payment details?,Fees_and_Account
+Where to contact accounts office?,Fees_and_Account
+Need tuition fee statement,Fees_and_Account
+How can I apply for hostel leave?,Residential_Services
+No water supply in hostel room,Residential_Services
+Hostel mess food quality poor,Residential_Services
+Laundry machines not working,Residential_Services
+Hostel cleaning not done,Residential_Services
+Garbage near hostel entrance,Residential_Services
+How to report hostel complaint?,Residential_Services
+Need emergency hostel leave,Residential_Services
+Mess not serving food on time,Residential_Services
+Ironing service not available,Residential_Services
+Hostel security issue,Residential_Services
+Room maintenance problem,Residential_Services
+Hostel staff behaviour issue,Residential_Services
+Medical emergency in hostel,Residential_Services
+Water leakage in hostel room,Residential_Services
+Electricity problem in hostel,Residential_Services
+How to contact hostel office?,Residential_Services
+Hostel gate closing time issue,Residential_Services
+Room change request?,Residential_Services
+Need hostel no‑dues certificate,Residential_Services
+I want to report theft on campus,Security_and_Safety
+Harassment by another student,Security_and_Safety
+Threatening calls received,Security_and_Safety
+Fight between students reported,Security_and_Safety
+Suspicious activity near hostel,Security_and_Safety
+Report staff misconduct,Security_and_Safety
+Unsafe behaviour in corridor,Security_and_Safety
+How to contact campus security?,Security_and_Safety
+Theft in parking area,Security_and_Safety
+Complaint about eve teasing,Security_and_Safety
+Security issue in library,Security_and_Safety
+Lost belongings in hostel,Security_and_Safety
+Need help with safety concern,Security_and_Safety
+How to escalate security complaint?,Security_and_Safety
+Discipline issue on campus,Security_and_Safety
+Emergency security contact?,Security_and_Safety
+Report threatening email,Security_and_Safety
+Safety complaint registration,Security_and_Safety
+Unauthorized entry in campus,Security_and_Safety
+Security office contact details?,Security_and_Safety
+What are library timings?,Library
+How to reserve a book?,Library
+Check book availability?,Library
+Library fine payment process?,Library
+How to get library no‑dues?,Library
+Access online journals?,Library
+Plagiarism software access?,Library
+Library discipline rules?,Library
+Digital books access?,Library
+Where is baggage counter?,Library
+Lost library book procedure?,Library
+Library card issue?,Library
+How to extend book return date?,Library
+Reading hall timing?,Library
+Access newspapers in library?,Library
+Library computer center access?,Library
+Library resource login issue?,Library
+Journal access problem?,Library
+Library staff contact?,Library
+How to check borrowed books?,Library
+How to check attendance?,Academics
+Download academic calendar?,Academics
+Request makeup class?,Academics
+Timetable release date?,Academics
+How to change academic program?,Academics
+Elective polling process?,Academics
+Report faculty behaviour?,Academics
+Class schedule conflict?,Academics
+Course syllabus access?,Academics
+Attendance shortage issue?,Academics
+Credit transfer process?,Academics
+Semester break dates?,Academics
+Guest lecture information?,Academics
+Academic record correction?,Academics
+Degree extension request?,Academics
+How to check CA marks?,Academics
+Programme continuation request?,Academics
+Lab manual access?,Academics
+Academic grievance submission?,Academics
+Where to download instruction plan?,Academics
+How to apply for research grant?,Division_of_Research_and_Development
+PhD thesis submission process?,Division_of_Research_and_Development
+Research publication upload?,Division_of_Research_and_Development
+PhD seminar schedule?,Division_of_Research_and_Development
+Research incentive details?,Division_of_Research_and_Development
+IPR registration process?,Division_of_Research_and_Development
+Patent filing guidance?,Division_of_Research_and_Development
+Supervisor change request?,Division_of_Research_and_Development
+PhD evaluation status?,Division_of_Research_and_Development
+Research fellowship details?,Division_of_Research_and_Development
+Conference paper submission?,Division_of_Research_and_Development
+Research grant reimbursement?,Division_of_Research_and_Development
+PhD registration renewal?,Division_of_Research_and_Development
+Thesis pre‑submission query?,Division_of_Research_and_Development
+Research certificate request?,Division_of_Research_and_Development
+Annual progress report submission?,Division_of_Research_and_Development
+Research topic modification?,Division_of_Research_and_Development
+Paper log ID status?,Division_of_Research_and_Development
+Research document upload issue?,Division_of_Research_and_Development
+PhD coursework query?,Division_of_Research_and_Development
+Visa extension process?,International_Affair
+FRRO registration help?,International_Affair
+Semester exchange eligibility?,International_Affair
+Study abroad application?,International_Affair
+International student orientation?,International_Affair
+Residence permit process?,International_Affair
+Passport update in records?,International_Affair
+Immigration support contact?,International_Affair
+International scholarship info?,International_Affair
+Global immersion program?,International_Affair
+Exchange partner universities?,International_Affair
+Travel documentation request?,International_Affair
+Visa renewal documents?,International_Affair
+FRRO appointment booking?,International_Affair
+International office contact?,International_Affair
+Overseas internship query?,International_Affair
+Student exchange registration?,International_Affair
+International cultural program?,International_Affair
+Foreign student support services?,International_Affair
+How to extend stay in India?,International_Affair
+How to register for placement drive?,Placements
+Internship approval request?,Placements
+Placement joining status?,Placements
+Download placement offer letter?,Placements
+Cancel internship request?,Placements
+Placement duty leave?,Placements
+Placement portal login issue?,Placements
+Live industry project info?,Placements
+Summer internship registration?,Placements
+Reject placement offer process?,Placements
+Placement results update?,Placements
+Career pathway change?,Placements
+OJT internship query?,Placements
+Placement reinstatement fee?,Placements
+Placement services exit request?,Placements
+Placement cell contact?,Placements
+Drive registration status?,Placements
+Internship cancellation process?,Placements
+Placement policy details?,Placements
+Company interview schedule?,Placements
+"I want information about the mechanics (MEC136) exam pattern and question format.""",Academics
+My timetable is not updated for the Operating Systems subject. Please update it.,Academics
+I want to change my mode of classes from offline to online.,Academics
+I need clarification regarding the question paper pattern for MCQs and non-MCQs.,Academics
+I need a letter of recommendation for bank or admission purposes.,Admissions
+I was unable to connect my camera and microphone during the online exam and request rescheduling.,Examination
+I missed my exam due to technical issues.,Examination
+I want to know about the I-Grade exam date sheet.,Examination
+I have filled the improvement form but my exam date has not been released yet.,Examination
+I want to withdraw my previous RMS request related to examination.,Examination
+I want to download my academic transcript and semester results.,Examination
+I have an attendance issue where I was marked absent due to class cancellation.,Examination
+I paid my hostel and loan fees but the payment is not updated in UMS.,Fees_and_Account
+I was charged a late fee even though I paid on time.,Fees_and_Account
+I need a demand letter for fee payment.,Fees_and_Account
+I need a loan letter for tuition fees only but extra charges were included.,Fees_and_Account
+My bank loan approval is delayed.,Fees_and_Account
+I want to know the last date for submission of Annexure 2.,Fees_and_Account
+I paid uniform fees through UMS GPay but it is still showing pending.,Fees_and_Account
+I want to change my LPU email password.,IT
+I am facing issues with the UMS software.,IT
+My allotted hostel room was assigned to someone else.,Residential_Services
+I want to shift my hostel room through mutual understanding.,Residential_Services
+I want adjustment in the same hostel room with my friends.,Residential_Services
+I want to know if I can get my preferred hostel room upon arrival.,Residential_Services
+I have an issue regarding hostel room allocation.,Residential_Services
+The hostel food quality is not good and the menu is repetitive.,Residential_Services
+The tube light in my room is not working.,Residential_Services
+The ceiling lights are not working.,Residential_Services
+The fan is not working.,Residential_Services
+The fan needs cleaning.,Residential_Services
+The geyser is not working.,Residential_Services
+The geyser wire is fused.,Residential_Services
+The AC is not working properly and giving hot air.,Residential_Services
+The window AC is not working.,Residential_Services
+The switch/socket board in the room is not working.,Residential_Services
+The bathroom switch is not working.,Residential_Services
+The washroom drainage is blocked.,Residential_Services
+The wash basin tap is not working and the pipe needs repair.,Residential_Services
+There is repeated drainage blockage in the washroom.,Residential_Services
+I want to know whether CDP project participation is compulsory and need detailed information.,Division_of_Research_and_Development
+I need information regarding online certificates starting from 11 August.,Academics
+The concepts in C programming are not clear. The teacher reads from PPTs and does not explain coding properly.,Academics
+"During my online MEC136 exam, my laptop screen went black and I was blocked from attempting the exam. I request rescheduling or unblocking.",Examination
+Our semester fee is higher compared to seniors and juniors. We request fee reduction.,Fees_and_Account
+I want to change the password of my university email account.,IT
+I need access to my LPU email password for academic purposes.,IT
+Cleaning of ceiling fan required.,Residential_Services
+The geyser was repaired recently but has stopped working again.,Residential_Services
+Geyser is not providing hot water.,Residential_Services
+Tube light needs replacement.,Residential_Services
+Door latch is broken.,Residential_Services
+Study table is damaged.,Residential_Services
+Flush tank pipe is broken and water is leaking.,Residential_Services
+Roof is leaking from the ceiling.,Residential_Services
+Water cooler drainage is blocked.,Residential_Services
+Water is not coming from one tap.,Residential_Services
+Desert cooler needs cleaning.,Residential_Services
+The motor of the desert cooler is not working.,Residential_Services
+There is an opening near the cooler from where a mouse enters the room.,Residential_Services
+Request for hostel room change from basement to non-basement room.,Residential_Services
+I want to continue my online certification from home instead of staying in hostel.,Academics
+There is an opening near the cooler from where a mouse enters the room.,Residential_Services
+Request for approval of career service registration as it is pending.,Placements
+Can we add screenshots of an Excel sheet in the CDP report?,Division_of_Research_and_Development
+I want to know which category to select ('Other' or 'Youth Social Responsibility') while registering participants in CDP.,Division_of_Research_and_Development
+Is it permissible to complete the 20-day online certification from hostel instead of university labs?,Academics
