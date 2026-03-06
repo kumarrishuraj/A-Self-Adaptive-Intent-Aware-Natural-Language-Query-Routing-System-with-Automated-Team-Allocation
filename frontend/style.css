@@ -921,3 +921,4 @@ textarea:focus {
     .footer-container { grid-template-columns: 1fr; text-align: center; gap: 30px; }
     .footer-links ul li { justify-content: center; }
 }
+}
