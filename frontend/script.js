@@ -149,5 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.style.background = 'var(--glass-bg)';
         }
     });
+});
 
 });
