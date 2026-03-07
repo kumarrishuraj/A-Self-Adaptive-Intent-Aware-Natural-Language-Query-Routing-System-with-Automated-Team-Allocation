@@ -81,24 +81,16 @@ Where to contact accounts office?,Fees_and_Account
 Need tuition fee statement,Fees_and_Account
 How can I apply for hostel leave?,Residential_Services
 No water supply in hostel room,Residential_Services
-Hostel mess food quality poor,Residential_Services
+library system not allowing me to reserve book online please check,Library
 Laundry machines not working,Residential_Services
-Hostel cleaning not done,Residential_Services
 Garbage near hostel entrance,Residential_Services
-How to report hostel complaint?,Residential_Services
 Need emergency hostel leave,Residential_Services
 Mess not serving food on time,Residential_Services
 Ironing service not available,Residential_Services
 Hostel security issue,Residential_Services
-Room maintenance problem,Residential_Services
 Hostel staff behaviour issue,Residential_Services
 Medical emergency in hostel,Residential_Services
-Water leakage in hostel room,Residential_Services
-Electricity problem in hostel,Residential_Services
 How to contact hostel office?,Residential_Services
-Hostel gate closing time issue,Residential_Services
-Room change request?,Residential_Services
-Need hostel no‑dues certificate,Residential_Services
 I want to report theft on campus,Security_and_Safety
 Harassment by another student,Security_and_Safety
 Threatening calls received,Security_and_Safety
@@ -247,9 +239,7 @@ I want to know if I can get my preferred hostel room upon arrival.,Residential_S
 I have an issue regarding hostel room allocation.,Residential_Services
 The hostel food quality is not good and the menu is repetitive.,Residential_Services
 The tube light in my room is not working.,Residential_Services
-The ceiling lights are not working.,Residential_Services
 The fan is not working.,Residential_Services
-The fan needs cleaning.,Residential_Services
 The geyser is not working.,Residential_Services
 The geyser wire is fused.,Residential_Services
 The AC is not working properly and giving hot air.,Residential_Services
@@ -270,7 +260,6 @@ Cleaning of ceiling fan required.,Residential_Services
 The geyser was repaired recently but has stopped working again.,Residential_Services
 Geyser is not providing hot water.,Residential_Services
 Tube light needs replacement.,Residential_Services
-Door latch is broken.,Residential_Services
 Study table is damaged.,Residential_Services
 Flush tank pipe is broken and water is leaking.,Residential_Services
 Roof is leaking from the ceiling.,Residential_Services
@@ -286,3 +275,285 @@ Request for approval of career service registration as it is pending.,Placements
 Can we add screenshots of an Excel sheet in the CDP report?,Division_of_Research_and_Development
 I want to know which category to select ('Other' or 'Youth Social Responsibility') while registering participants in CDP.,Division_of_Research_and_Development
 Is it permissible to complete the 20-day online certification from hostel instead of university labs?,Academics
+request for rescheduling my exam due to technical issue during CSE320 online exam,Examination
+grade upgradation request for CSE202,Examination
+request for cancellation of indisciplinary case for night leave,Security_and_Safety
+tube light or ceiling light not working in bathroom,Residential_Services
+wifi not working in my hostel room since morning please check,IT
+i forgot my ums password and cannot login please help,IT
+internet is very slow in lab today we cannot open websites,IT
+i want to know when admission result will come,Admissions
+i filled admission form but payment page not opening,Admissions
+i uploaded wrong document in admission form how to correct it,Admissions
+my exam timetable is not visible in ums portal,Examination
+i was not able to submit my exam form it was showing error,Examination
+marks showing wrong in my result please check it,Examination
+i paid semester fee but it is still showing pending in portal,Fees_and_Account
+how to download fee receipt for loan purpose,Fees_and_Account
+my scholarship money not updated in fee account,Fees_and_Account
+water not coming in hostel bathroom from yesterday,Residential_Services
+hostel cleaning not done for many days please check,Residential_Services
+someone stole my cycle from hostel parking area,Security_and_Safety
+students are making fight near hostel block at night,Security_and_Safety
+library card is not working when i try to issue book,Library
+attendance showing less but i attended all classes please check,Academics
+how to submit my research progress report online,Division_of_Research_and_Development
+door making heavy noise and not opening properly,Residential_Services
+geyser not working properly no hot water coming,Residential_Services
+fan making noise and not working properly,Residential_Services
+washroom not cleaned properly bad smell coming,Residential_Services
+light not working in my hostel room,Residential_Services
+switch board problem in room not working,Residential_Services
+socket not working cannot charge laptop,Residential_Services
+study table broken in hostel room,Residential_Services
+curtain missing in hostel room window,Residential_Services
+tap leaking in washroom continuously,Residential_Services
+grouting problem in washroom floor,Residential_Services
+switch socket problem near bed not working,Residential_Services
+door problem lock not working properly,Residential_Services
+curtain rod broken in room,Residential_Services
+enquiry about reappear exam date,Examination
+request for outdoor exercise equipment near girls hostel,Residential_Services
+cdp certificate not received even after request,Academics
+need help for online certification of cdp,Academics
+please tie rope in balcony for drying clothes,Residential_Services
+problem in downloading cse online certification,Academics
+attendance marked wrong for online class please check,Academics
+luggage safety issue in university cloakroom,Security_and_Safety
+travel planning issue due to fractal exam schedule,Academics
+technical problem during cse320 online exam codetantra blocked me,Examination
+unable to understand concept in cse211 class please review teaching method,Academics
+please review my dsa end term marks i think evaluation is wrong,Examination
+need information about skill development courses exam and benefits,Academics
+fee paid but still not updated in ums account,Fees_and_Account
+problem with theory etp exam result answer uploaded but showing not submitted,Examination
+need help regarding seating plan issue for theory etp exam,Examination
+technical issue during online exam invigilation/proctoring system,Examination
+need revised demand letter for education loan fee certificate,Fees_and_Account
+fee payment done but still showing pending in system,Fees_and_Account
+request for fee payment extension due to bank loan process,Fees_and_Account
+washbasin drainage problem in washroom,Residential_Services
+mess and laundry residential fee already paid but still showing dr,Fees_and_Account
+need fee structure document and loan letter for bank education loan,Fees_and_Account
+rude behaviour by teacher during etp viva and given very low marks,Examination
+request to remove ums disciplinary case for coming late due to traffic,Security_and_Safety
+library book return date not updating in system please check,Library
+I do not have access to my university-provided student email ID. I need the email ID and password in order to avail student benefits and access academic resources.,IT
+"During my CSE121 online examination, I was unable to attempt the exam due to an issue with the Codetantra proctoring software. The system prevented me from taking the exam properly.",Examination
+"While attempting my ECE249 online examination, I plugged in my laptop charger during the exam, after which I faced technical issues that affected my exam attempt.",Examination
+"I was attending my online class, but the session was suspended and I was marked absent despite being present.",Academics
+"I have been allotted section K24DM, but I am facing issues related to students in that section. I would like to request a change of section.",Academics
+"I had my GEN231/CDP Viva scheduled, but I was unable to attend due to medical reasons. I request rescheduling of the viva.",Examination
+I was unable to join the GEN231/CDP online viva session for approximately 1.5 hours due to technical issues. I request rescheduling.,Examination
+"I completed my WNS certification, but I have not yet received the certificate. I request clarification and issuance of the certificate.",Division_of_Research_and_Development
+"I attended my online class, but due to suspension of the session, I was marked absent incorrectly.",Academics
+My Summer CDP Viva is scheduled and I request duty leave approval to attend the viva.,Academics
+"My Infosys Springboard certificate was verified, but the attendance benefit has not been properly updated in my academic record.",Academics
+I missed my GEN231 Viva due to a medical emergency and I request rescheduling of the viva.,Examination
+Request to review bonus attendance for Infosys Springboard certificate not approved,Academics
+Flush tank hinge not working and seat cover not attached in hostel bathroom,Residential_Services
+Follow up on peer tutor interview status for ECE249 selection,Academics
+Request for hostel transfer so I can stay with my friend in another hostel,Residential_Services
+Concern regarding adjustment of residential fees for 20 days online certification from home,Fees_and_Account
+Clarification regarding hostel allotment during fractal term certification,Residential_Services
+Request to know RPL exam date and syllabus under EduRev,Examination
+Request to change location preference for online certification from hostel to home,Academics
+"Query about next steps for submitting CDP report, certificates,  photos and excel sheet",Academics
+Question about extra charges and proctor exam if online certification is done from hostel,Academics
+"Clarification regarding CDP requirement for certificates,  Aadhaar numbers and geotagged photos ",Academics
+Not satisfied with result and grade assignment in courses PEL130 and DBMS,Examination
+Issue downloading bonafide certificate for education loan application,Academics
+Request for rescheduling MEC136 exam due to blocking during online test,Examination
+Network issue caused blocking during MEC136 exam and affected performance,Examination
+Blocked during online MEC136 exam and seeking assistance,Examination
+Request to extend date of CSE320 ETP exam for section K24FD,Examination
+Inquiry about pursuing a parallel online degree while studying CSE,Admissions
+Uniform fee paid but uniform not yet received,Academics
+Grade point seems incorrect in soft skills and CSE326 exam results,Examination
+WiFi connectivity issue on laptop in hostel,IT
+Split AC display not working and temperature cannot be changed,Residential_Services
+Inquiry about induction start date for university reporting,Admissions
+Request for admission proof and placement record for education loan application,Placements
+Request to book laundry facility in hostel,Residential_Services
+Unable to access LPU student email and password for Infosys Springboard registration,IT
+Query about compounding fee added in semester fee account,Fees_and_Account
+Request to cancel remedial class of CSE211 due to schedule conflict and fee concern,Academics
+Request to cancel online remedial class of CSE211 and clarification about attendance impact,Academics
+Request for LPU student email password to join course using university email ID,IT
+Request to update parent contact number in university profile,Academics
+Request for cement patch work repair in hostel room,Residential_Services
+Request for timetable of term 2 for BTech CSE Artificial Intelligence and Data Engineering,Academics
+Power supply issue in library basement area,Library
+Received 85 marks in OOPS programming but got grade A instead of higher grade,Examination
+NeoBrowser software not downloading on my system,IT
+Request for LPU student email password,IT
+Request to change hostel preference to home for certification and adjust hostel fee,Fees_and_Account
+Fee payment update confirmation required after payment,Fees_and_Account
+Amount credited through bank but not updated in UMS fee account,Fees_and_Account
+How to download fee receipt from UMS portal,Fees_and_Account
+Request for demand letter for bank loan fee submission,Fees_and_Account
+Query regarding placement records submission for loan purpose,Placements
+Request to know loan letter application process,Admissions
+Issue while applying for certificate on UMS portal,Academics
+Request for demand letter and admission letter for education loan application,Admissions
+Request for admission letter and fee structure for loan application,Admissions
+Inquiry about fee structure required for bank loan application,Fees_and_Account
+Request for fee structure document for bank loan procedure,Fees_and_Account
+Unable to login with LPU official email while installing AUTOCAD software,IT
+Request to cancel CA4 and WTP exam due to clash with end term exams,Examination
+Request to allot same hostel room with my brother due to personal issue,Residential_Services
+my wallet got lost in campus maybe near library please help,Security_and_Safety
+my phone got lost in library reading hall please help,Security_and_Safety
+students smoking near hostel corridor at night please take action,Security_and_Safety
+cannot login into microsoft 365 to upload infosys certificate,IT
+is there bonus attendance for infosys certificate in fractal 2,Academics
+request to remove umc case imposed on me during exam it was misunderstanding,Security_and_Safety
+please review disciplinary case filed against me for hostel late entry,Security_and_Safety
+i apologise for breaking hostel timing please remove the disciplinary case,Security_and_Safety
+umc case imposed during exam but i did not use any unfair means please check,Security_and_Safety
+request for cancellation of indisciplinary case for night leave delay,Security_and_Safety
+security guard reported me for late hostel entry please review the case,Security_and_Safety
+disciplinary case registered by mistake during exam please verify,Security_and_Safety
+infosys certificate attendance benefit not updated in portal please check,Academics
+verification request for central reserve police force merit scholarship form,Fees_and_Account
+need information about documents required for crpf merit scholarship scheme,Fees_and_Account
+career services registration completed but approval still pending please review,Placements
+technical issue during phy110 online exam system blocked and marked absent please reschedule,Examination
+faced technical issue in phy110 and cse121 exam need reschedule update,Examination
+could not start phy110 online exam due to system glitch please reschedule exam,Examination
+system blocked during cse121 online exam after few questions please allow reschedule,Examination
+answers uploaded in mec136 exam but showing not submitted please check,Examination
+attendance marked absent even though i was present in class please update attendance,Academics
+please remove warning issued for hostel corridor noise it was misunderstanding,Security_and_Safety
+security complaint filed against me by mistake please review the report,Security_and_Safety
+request to reconsider umc case during online exam due to technical issue,Security_and_Safety
+placement portal not opening when i try to register for company drive,Placements
+i missed the placement registration deadline can i still apply,Placements
+my internship approval is still pending please check,Placements
+company interview schedule not visible on placement portal,Placements
+i want to cancel my internship registration please guide,Placements
+placement offer letter not uploaded in portal please check,Placements
+i was selected in company but joining details not received yet,Placements
+placement portal showing error while uploading resume,Placements
+i want to opt out from placement process please guide,Placements
+summer internship registration link not working,Placements
+unable to register for upcoming placement drive portal showing error,Placements
+my resume is not uploading on placement portal please check,Placements
+selected for internship but approval not showing in portal,Placements
+company shortlist not visible on placement portal please update,Placements
+i want to withdraw from current placement drive please guide,Placements
+placement registration submitted but status still pending,Placements
+interview link for company drive not received yet,Placements
+offer letter from company not uploaded in placement portal,Placements
+placement duty leave not approved in ums please check,Placements
+i rejected offer but still showing active in placement portal,Placements
+company interview timing not visible on placement dashboard,Placements
+internship completion certificate where to upload in placement portal,Placements
+unable to update resume details in placement portal,Placements
+placement cell contact details needed for internship query,Placements
+drive registration successful but company name not visible in portal,Placements
+i need help with frro registration process as international student,International_Affair
+my visa is expiring soon how can i apply for extension,International_Affair
+passport details not updated in university records please help,International_Affair
+i want to apply for semester exchange program please guide,International_Affair
+need information about international student orientation schedule,International_Affair
+how to update new passport details in ums portal,International_Affair
+i want to know eligibility for study abroad program,International_Affair
+frro appointment booking problem please help,International_Affair
+international office contact number needed for visa query,International_Affair
+how can international students apply for scholarship in university,International_Affair
+travel documents required for exchange program please inform,International_Affair
+need support for residence permit process in india,International_Affair
+request to change teacher for my subject because teaching is not understandable,Academics
+please mark my attendance for lecture i was present but marked absent,Academics
+request for grace marks to clear subject mth302 examination,Examination
+i failed by few marks in phy110 please consider grace marks,Examination
+i returned library book but fine still showing in my account,Library
+cannot access digital library resources from hostel network,Library
+library computer login not working when trying to access journals,Library
+book i reserved online is not showing ready for pickup,Library
+library portal showing error while checking available books,Library
+library book return not updated in system even after submitting book,Library
+unable to access university e-journal database from my login,Library
+library id card not scanning at entry gate please check,Library
+book issue machine not working in library today,Library
+i lost my library card how can i get a new one,Library
+library fine showing but i already returned the book,Library
+cannot renew borrowed book through library portal,Library
+library reading hall seats always full how can we reserve seat,Library
+unable to login to digital library portal using university id,Library
+book i need is showing available but staff said not in rack,Library
+library printer not working when trying to print notes,Library
+digital library page loading very slow please check,Library
+library system showing wrong due date for my issued book,Library
+how to request new academic book for library purchase,Library
+unable to access plagiarism software through library login,Library
+library computer system automatically logging out while working,Library
+book reservation request cancelled automatically please check,Library
+library gate entry not allowing me even with valid id card,Library
+cannot open research papers from library database,Library
+library website showing error while searching books,Library
+reading hall light very dim cannot study properly please check,Library
+library staff asked fine but system not showing any fine,Library
+book i returned last week still showing issued in my account,Library
+unable to download journal article from library portal,Library
+library study room booking option not working in portal,Library
+My programming practice marks for CSE202 are not visible in UMS. Please update them.,Academics
+I think my internal marks for Data Structures are incorrect. Kindly verify them once.,Academics
+The syllabus page on UMS is not opening. I need the syllabus for the next semester.,Academics
+My attendance is showing very low even though I attended most of the classes. Please check.,Academics
+"I appeared in the improvement exam, but my result is still not updated in the portal.",Academics
+The mid-term marks for Operating Systems are not uploaded yet. Please update them.,Academics
+I am unable to download my grade sheet from UMS as it shows an error.,Academics
+My CGPA calculation seems incorrect after the last semester result. Kindly verify.,Academics
+I want to apply for rechecking of my end-term answer sheet. Please guide me.,Examination
+The seating plan for tomorrow’s exam is not visible in my portal.,Examination
+"During the online exam, my system got locked and I could not continue the test. Please help.",Examination
+My exam form submission status is still pending even after payment.,Examination
+The practical exam schedule is not available on UMS. Please share the dates.,Examination
+I missed my exam due to a medical emergency. How can I apply for reappear?,Examination
+I am unable to log in to my university email account. Please reset my password.,IT
+The Wi-Fi in the academic block disconnects frequently while attending online classes.,IT
+The UMS portal is showing a server error while uploading my assignment.,IT
+My university email ID is not activated yet. Please check.,IT
+I cannot access Microsoft Teams using my university credentials.,IT
+"I want to update my resume on the placement portal, but the page is not loading.",Placements
+"I registered for a placement drive, but my name is not appearing in the eligible list.",Placements
+The company interview schedule is not visible in the placement portal.,Placements
+"I uploaded my resume, but it is showing pending verification in the placement portal.",Placements
+I need previous year placement statistics for education loan purposes.,Placements
+"I submitted my admission documents, but the verification status is still pending.",Admissions
+"My fee payment is completed, but it is not reflected in the admission portal.",Admissions
+I want to change my branch preference after admission. Is it possible?,Admissions
+My admission letter is not available for download in the portal.,Admissions
+"I uploaded my certificates during admission, but they are showing rejected. Please check.",Admissions
+"How can I apply for a research project under the university?",Division_of_Research_and_Development
+"What is the procedure to register a new research project?",Division_of_Research_and_Development
+"How do I submit my research proposal to the R&D division?",Division_of_Research_and_Development
+"Where can I find information about ongoing research projects?",Division_of_Research_and_Development
+"How can I apply for research funding or grants?",Division_of_Research_and_Development
+"What documents are required to apply for research funding?",Division_of_Research_and_Development
+"How can faculty members collaborate on research projects?",Division_of_Research_and_Development
+"How do I register my innovation or prototype with the R&D department?",Division_of_Research_and_Development
+"What is the process for patent filing through the university?",Division_of_Research_and_Development
+"How can I apply for patent support from the R&D division?",Division_of_Research_and_Development
+"Where can I submit my research paper for university publication support?",Division_of_Research_and_Development
+"How do I participate in university research programs?",Division_of_Research_and_Development
+"What facilities are available in the university research labs?",Division_of_Research_and_Development
+"How can students join faculty research projects?",Division_of_Research_and_Development
+"Is there any funding available for student innovation projects?",Division_of_Research_and_Development
+"How can I register for a research workshop or seminar?",Division_of_Research_and_Development
+"Where can I check upcoming research conferences supported by the university?",Division_of_Research_and_Development
+"How do I get approval for using research lab equipment?",Division_of_Research_and_Development
+"What is the process for interdisciplinary research collaboration?",Division_of_Research_and_Development
+"How can I submit my research progress report?",Division_of_Research_and_Development
+"How do I apply for incubation support for my startup idea?",Division_of_Research_and_Development
+"Where can I get mentorship for my research project?",Division_of_Research_and_Development
+"How can I access research journals provided by the university?",Division_of_Research_and_Development
+"What is the procedure to commercialize a university research project?",Division_of_Research_and_Development
+"How can I request research data from the university database?",Division_of_Research_and_Development
+"What support does the R&D division provide for innovation?",Division_of_Research_and_Development
+"How can I register for the university innovation challenge?",Division_of_Research_and_Development
+"Where can I find guidelines for research ethics approval?",Division_of_Research_and_Development
+"How do I apply for travel grants for research conferences?",Division_of_Research_and_Development
+"How can I track the status of my submitted research proposal?",Division_of_Research_and_Development
