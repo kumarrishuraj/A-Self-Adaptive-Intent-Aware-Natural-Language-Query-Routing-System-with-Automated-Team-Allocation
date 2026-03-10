@@ -1,49 +1,29 @@
+import sys
+import os
+# Allow importing from parent directory
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from ml.predict_intent import predict_intent
+
 def route_query(query):
-    query = query.lower()
 
-    # IT
-    if any(word in query for word in ["wifi", "internet", "portal", "ums", "email", "network"]):
-        return "IT"
+    # Get predicted intent and probabilities
+    intent, probabilities = predict_intent(query)
 
-    # Admissions
-    elif any(word in query for word in ["admission", "apply", "eligibility", "documents"]):
-        return "Admissions"
+    # Sort intents by probability (highest first)
+    sorted_probs = sorted(probabilities.items(), key=lambda x: x[1], reverse=True)
 
-    # Examination
-    elif any(word in query for word in ["exam", "result", "reappear", "revaluation", "scrutiny"]):
-        return "Examination"
+    # Select top 2 intents
+    departments = [sorted_probs[0][0], sorted_probs[1][0]]
 
-    # Fees and Account
-    elif any(word in query for word in ["fee", "payment", "refund", "scholarship", "reimbursement"]):
-        return "Fees_and_Account"
+    return departments
+# Test routing
+if __name__ == "__main__":
 
-    # Academics
-    elif any(word in query for word in ["attendance", "timetable", "syllabus", "academic", "class"]):
-        return "Academics"
+    query = input("Enter query: ")
 
-    # Residential Services
-    elif any(word in query for word in ["hostel", "mess", "laundry", "room", "maintenance"]):
-        return "Residential_Services"
+    teams = route_query(query)
 
-    # Security and Safety
-    elif any(word in query for word in ["theft", "harassment", "fight", "security", "threat"]):
-        return "Security_and_Safety"
+    print("\nQuery will be sent to these departments:\n")
 
-    # Library
-    elif any(word in query for word in ["library", "book", "journal", "plagiarism"]):
-        return "Library"
-
-    # Placements
-    elif any(word in query for word in ["placement", "internship", "company", "offer"]):
-        return "Placements"
-
-    # International Affair
-    elif any(word in query for word in ["visa", "frro", "international", "exchange"]):
-        return "International_Affair"
-
-    # Research & Development
-    elif any(word in query for word in ["phd", "research", "thesis", "publication", "grant"]):
-        return "Division_of_Research_and_Development"
-
-    else:
-        return "General_Inquiry"
+    for team in teams:
+        print(team)
