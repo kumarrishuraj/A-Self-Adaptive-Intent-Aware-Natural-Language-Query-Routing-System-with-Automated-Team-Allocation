@@ -4,8 +4,6 @@ from sentence_transformers import SentenceTransformer
 clf = joblib.load("models/intent_classifier.pkl")
 # Load SBERT model
 sbert = SentenceTransformer("all-MiniLM-L6-v2")
-
-
 def predict_intent(query):
 
     # Convert query to embedding
