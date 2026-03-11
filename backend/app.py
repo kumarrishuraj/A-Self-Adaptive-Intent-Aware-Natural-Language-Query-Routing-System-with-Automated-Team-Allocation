@@ -1,26 +1,44 @@
 from flask import Flask, request, jsonify
-from routing import route_query
+
+from Services.routing_service import route_query
+from Services.ticket_service import create_ticket, get_tickets, resolve_ticket
 
 app = Flask(__name__)
 
+
+@app.route("/submit_query", methods=["POST"])
+def submit_query():
+
+    data = request.json
+
+    name = data["name"]
+    reg_no = data["reg_no"]
+    query = data["query"]
+
+    departments = route_query(query)
+
+    ticket = create_ticket(name, reg_no, query, departments)
+
+    return jsonify(ticket)
+
+
+@app.route("/tickets/<department>", methods=["GET"])
+def fetch_tickets(department):
+
+    tickets = get_tickets(department)
+
+    return jsonify(tickets)
+
+
+@app.route("/resolve/<int:ticket_id>", methods=["POST"])
+def resolve(ticket_id):
+
+    ticket = resolve_ticket(ticket_id)
+
+    return jsonify(ticket)
+
 @app.route("/")
 def home():
-    return jsonify({"message": "Backend is running successfully"})
-
-@app.route("/predict", methods=["POST"])
-def predict():
-    data = request.get_json()
-
-    if not data or "query" not in data:
-        return jsonify({"error": "Query not provided"}), 400
-
-    user_query = data["query"]
-    department = route_query(user_query)
-
-    return jsonify({
-        "query": user_query,
-        "assigned_category": department
-    })
-
+    return "Backend is running successfully"
 if __name__ == "__main__":
     app.run(debug=True)
