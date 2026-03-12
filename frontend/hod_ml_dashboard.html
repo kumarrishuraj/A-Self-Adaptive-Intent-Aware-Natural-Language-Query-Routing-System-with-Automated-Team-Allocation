@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="HOD Machine Learning dashboard — manage and resolve ML-related student tickets." />
+    <title>HOD ML Dashboard — TicketFlow</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ── Resolve Modal ──────────────────── -->
+    <div class="modal-overlay" id="resolveModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="resolveModalTitle">Resolve Ticket</h3>
+                <button class="modal-close" onclick="closeResolveModal()">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="replyText">Reply to Student</label>
+                <textarea id="replyText" class="form-textarea"
+                    placeholder="Type your resolution message here…"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="confirmResolve()">✅ Send Reply & Resolve</button>
+                <button class="btn btn-secondary" onclick="closeResolveModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Sidebar ──────────────────────────── -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">🎫</div>
+            <h2>TicketFlow</h2>
+        </div>
+
+        <div class="sidebar-section">Student</div>
+        <ul class="sidebar-nav">
+            <li><a href="student_page.html"><span class="nav-icon">📝</span> Submit Query</a></li>
+        </ul>
+
+        <div class="sidebar-section">Dashboards</div>
+        <ul class="sidebar-nav">
+            <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
+            <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
+            <li><a href="hod_ml_dashboard.html" class="active"><span class="nav-icon">🤖</span> HOD ML</a></li>
+            <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD Math</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <span class="version-badge">⚡ TicketFlow v2.0</span>
+        </div>
+    </aside>
+
+    <!-- ── Main Content ─────────────────────── -->
+    <main class="main-content">
+        <!-- Hero -->
+        <section class="page-hero">
+            <h1>🤖 <span class="gradient-text">HOD ML</span> Dashboard</h1>
+            <p>Manage and resolve student queries routed to the HOD Machine Learning department.</p>
+        </section>
+
+        <!-- Stats -->
+        <div class="stats-row stagger-in" id="statsRow"></div>
+
+        <!-- Tabs + Table -->
+        <div class="glass-card animate-in">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="open" onclick="switchTab('open')">🟢 Open Tickets</button>
+                <button class="tab-btn" data-tab="resolved" onclick="switchTab('resolved')">✅ Resolved</button>
+                <button class="tab-btn" data-tab="rerouted" onclick="switchTab('rerouted')">🔀 Rerouted</button>
+                <button class="tab-btn" data-tab="logs" onclick="switchTab('logs')">📋 Logs</button>
+            </div>
+
+            <!-- Open Tickets -->
+            <div class="tab-panel active" id="panel-open">
+                <div class="table-wrapper">
+                    <table class="data-table" id="openTable">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Name</th>
+                                <th>Reg No</th>
+                                <th>Query</th>
+                                <th>Departments</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="openTableBody"></tbody>
+                    </table>
+                    <div class="empty-state hidden" id="emptyOpen">
+                        <div class="empty-icon">📭</div>
+                        <p>No open tickets — all clear!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resolved Tickets -->
+            <div class="tab-panel" id="panel-resolved">
+                <div class="table-wrapper">
+                    <table class="data-table" id="resolvedTable">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Name</th>
+                                <th>Query</th>
+                                <th>Departments</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resolvedTableBody"></tbody>
+                    </table>
+                    <div class="empty-state hidden" id="emptyResolved">
+                        <div class="empty-icon">🗂️</div>
+                        <p>No resolved tickets yet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rerouted Tickets -->
+            <div class="tab-panel" id="panel-rerouted">
+                <div class="table-wrapper">
+                    <table class="data-table" id="reroutedTable">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Name</th>
+                                <th>Query</th>
+                                <th>Departments</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reroutedTableBody"></tbody>
+                    </table>
+                    <div class="empty-state hidden" id="emptyRerouted">
+                        <div class="empty-icon">🔀</div>
+                        <p>No rerouted tickets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticket Logs -->
+            <div class="tab-panel" id="panel-logs">
+                <div id="logsContainer"></div>
+                <div class="empty-state hidden" id="emptyLogs">
+                    <div class="empty-icon">📜</div>
+                    <p>No ticket logs available.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        const DEPT = 'HOD_ML';
+
+        document.addEventListener('DOMContentLoaded', refresh);
+
+        async function refresh() {
+            const tickets = await fetchTickets(DEPT);
+            renderStats(tickets);
+            renderOpenTable(tickets.filter(t => t.status === 'Open'));
+            renderResolvedTable(tickets.filter(t => t.status === 'Resolved'));
+            renderReroutedTable(tickets.filter(t => t.status === 'Rerouted'));
+            renderLogs(tickets);
+        }
+
+        function renderStats(tickets) {
+            const open = tickets.filter(t => t.status === 'Open').length;
+            const resolved = tickets.filter(t => t.status === 'Resolved').length;
+            const rerouted = tickets.filter(t => t.status === 'Rerouted').length;
+            document.getElementById('statsRow').innerHTML = `
+                <div class="stat-card"><div class="stat-label">Total Tickets</div><div class="stat-value">${tickets.length}</div></div>
+                <div class="stat-card"><div class="stat-label">Open</div><div class="stat-value">${open}</div></div>
+                <div class="stat-card"><div class="stat-label">Resolved</div><div class="stat-value">${resolved}</div></div>
+                <div class="stat-card"><div class="stat-label">Rerouted</div><div class="stat-value">${rerouted}</div></div>
+            `;
+        }
+
+        function renderOpenTable(tickets) {
+            const tbody = document.getElementById('openTableBody');
+            const empty = document.getElementById('emptyOpen');
+            if (tickets.length === 0) { tbody.innerHTML = ''; empty.classList.remove('hidden'); return; }
+            empty.classList.add('hidden');
+            tbody.innerHTML = tickets.map(t => `
+                <tr>
+                    <td>${t.id}</td>
+                    <td>${t.name}</td>
+                    <td>${t.regNo}</td>
+                    <td><span class="query-preview">${t.query}</span></td>
+                    <td><div class="dept-tags">${(t.currentDepartments || t.departments || []).map(d => `<span class="dept-tag">${d}</span>`).join('')}</div></td>
+                    <td><span class="badge badge-open">Open</span></td>
+                    <td>
+                        <div class="action-cell">
+                            <button class="btn btn-sm btn-success" onclick="handleResolve('${t.id}')">✅ Resolve</button>
+                            <select class="reroute-select" onchange="handleReroute('${t.id}', this.value); this.selectedIndex=0;">
+                                <option value="">🔀 Reroute</option>
+                                ${REROUTE_DEPARTMENTS.filter(d => d !== DEPT).map(d => `<option value="${d}">${d.replace(/_/g, ' ')}</option>`).join('')}
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderResolvedTable(tickets) {
+            const tbody = document.getElementById('resolvedTableBody');
+            const empty = document.getElementById('emptyResolved');
+            if (tickets.length === 0) { tbody.innerHTML = ''; empty.classList.remove('hidden'); return; }
+            empty.classList.add('hidden');
+            tbody.innerHTML = tickets.map(t => `
+                <tr>
+                    <td>${t.id}</td>
+                    <td>${t.name}</td>
+                    <td><span class="query-preview">${t.query}</span></td>
+                    <td><div class="dept-tags">${(t.currentDepartments || t.departments || []).map(d => `<span class="dept-tag">${d}</span>`).join('')}</div></td>
+                    <td><span class="badge badge-resolved">Resolved</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderReroutedTable(tickets) {
+            const tbody = document.getElementById('reroutedTableBody');
+            const empty = document.getElementById('emptyRerouted');
+            if (tickets.length === 0) { tbody.innerHTML = ''; empty.classList.remove('hidden'); return; }
+            empty.classList.add('hidden');
+            tbody.innerHTML = tickets.map(t => `
+                <tr>
+                    <td>${t.id}</td>
+                    <td>${t.name}</td>
+                    <td><span class="query-preview">${t.query}</span></td>
+                    <td><div class="dept-tags">${(t.currentDepartments || t.departments || []).map(d => `<span class="dept-tag">${d}</span>`).join('')}</div></td>
+                    <td><span class="badge badge-rerouted">Rerouted</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderLogs(tickets) {
+            const container = document.getElementById('logsContainer');
+            const empty = document.getElementById('emptyLogs');
+            if (tickets.length === 0) { container.innerHTML = ''; empty.classList.remove('hidden'); return; }
+            empty.classList.add('hidden');
+            container.innerHTML = tickets.map(t => `
+                <div class="log-card" onclick="this.classList.toggle('expanded')">
+                    <div class="log-card-header">
+                        <h4><span style="color:var(--accent-1)">${t.id}</span> — ${t.name} (${t.regNo})</h4>
+                        <span class="chevron">▼</span>
+                    </div>
+                    <div class="log-card-body">
+                        <div class="timeline">
+                            ${(t.log || []).map(l => `
+                                <div class="timeline-item ${l.event.toLowerCase()}">
+                                    <div class="tl-time">${l.date} · ${l.time}</div>
+                                    <div class="tl-event">${l.event} — ${l.detail}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+        }
+
+        let resolveTargetId = null;
+
+        function handleResolve(id) {
+            resolveTargetId = id;
+            document.getElementById('resolveModalTitle').textContent = 'Resolve Ticket ' + id;
+            document.getElementById('replyText').value = '';
+            document.getElementById('resolveModal').classList.add('open');
+        }
+
+        function closeResolveModal() {
+            document.getElementById('resolveModal').classList.remove('open');
+            resolveTargetId = null;
+        }
+
+        async function confirmResolve() {
+            const reply = document.getElementById('replyText').value.trim();
+            if (!reply) { showToast('warning', 'Reply Required', 'Please type a reply before resolving.'); return; }
+            await resolveTicket(resolveTargetId, reply, DEPT);
+            closeResolveModal();
+            showToast('success', 'Ticket Resolved', `${resolveTargetId} has been resolved by ${DEPT}.`);
+            refresh();
+        }
+
+        document.getElementById('resolveModal').addEventListener('click', function (e) { if (e.target === this) closeResolveModal(); });
+
+        async function handleReroute(id, newDept) {
+            if (!newDept) return;
+            await rerouteTicket(id, newDept);
+            showToast('info', 'Ticket Rerouted', `${id} rerouted to ${newDept.replace(/_/g, ' ')}.`);
+            refresh();
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('open');
+        }
+
+        function showToast(type, title, message) {
+            const icons = { success: '✅', info: 'ℹ️', warning: '⚠️' };
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-icon">${icons[type] || '📢'}</div>
+                <div class="toast-body"><h4>${title}</h4><p>${message}</p></div>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('toast-out'), 3500);
+            setTimeout(() => toast.remove(), 4000);
+        }
+    </script>
+</body>
+
+</html>

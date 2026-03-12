@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Submit and track your academic or placement queries." />
+  <title>Submit & Track Query — TicketFlow</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">🎫</div>
+      <h2>TicketFlow</h2>
+    </div>
+    <div class="sidebar-section">Student</div>
+    <ul class="sidebar-nav">
+      <li><a href="student_page.html" class="active"><span class="nav-icon">📝</span> Submit Query</a></li>
+    </ul>
+    <div class="sidebar-section">Dashboards</div>
+    <ul class="sidebar-nav">
+      <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
+      <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
+      <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
+      <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD Math</a></li>
+    </ul>
+    <div class="sidebar-footer"><span class="version-badge">⚡ TicketFlow v2.0</span></div>
+  </aside>
+
+  <main class="main-content">
+    <!-- ── Tab Switcher ─── -->
+    <div class="tabs" style="max-width:620px;margin:0 auto 2rem;">
+      <button class="tab-btn active" data-tab="submit" onclick="switchMainTab('submit')">📝 Submit Query</button>
+      <button class="tab-btn" data-tab="track" onclick="switchMainTab('track')">🔍 Track Tickets</button>
+    </div>
+
+    <!-- ══════ SUBMIT TAB ══════ -->
+    <div class="main-tab active" id="mainTab-submit">
+      <section class="page-hero">
+        <h1>Submit Your <span class="gradient-text">Query</span></h1>
+        <p>Have a question about academics or placements? Raise a ticket and our team will respond promptly.</p>
+      </section>
+      <div class="glass-card animate-in" id="formCard" style="max-width:620px;margin:0 auto;">
+        <form id="ticketForm" autocomplete="off">
+          <div class="form-group">
+            <label for="studentName">Full Name</label>
+            <input type="text" id="studentName" class="form-input" placeholder="e.g. Rishuraj Kumar" required />
+          </div>
+          <div class="form-group">
+            <label for="regNo">Registration Number</label>
+            <input type="text" id="regNo" class="form-input" placeholder="e.g. 12400878" required />
+          </div>
+          <div class="form-group">
+            <label for="queryText">Your Query</label>
+            <textarea id="queryText" class="form-textarea" placeholder="Describe your question in detail…"
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">🚀 Submit Ticket</button>
+        </form>
+      </div>
+      <div class="glass-card animate-in hidden" id="successCard" style="max-width:620px;margin:0 auto;">
+        <div class="success-panel">
+          <div class="success-icon">✅</div>
+          <h2>Ticket Created Successfully!</h2>
+          <p class="ticket-id" id="resultTicketId"></p>
+          <p id="resultRouted"></p>
+          <button class="btn btn-secondary mt-3" onclick="resetForm()">Submit Another Query</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ TRACK TAB ══════ -->
+    <div class="main-tab" id="mainTab-track">
+      <section class="page-hero">
+        <h1>Track Your <span class="gradient-text">Tickets</span></h1>
+        <p>Enter your Registration Number or Ticket ID to see the current status of your queries.</p>
+      </section>
+      <div class="glass-card animate-in" style="max-width:620px;margin:0 auto 2rem;">
+        <form id="trackForm" autocomplete="off" onsubmit="handleTrack(event)">
+          <div class="form-group">
+            <label for="trackInput">Registration Number or Ticket ID</label>
+            <input type="text" id="trackInput" class="form-input" placeholder="e.g. 12400878 or T1001" required />
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">🔍 Search Tickets</button>
+        </form>
+      </div>
+      <!-- Results -->
+      <div id="trackResults" style="max-width:720px;margin:0 auto;"></div>
+      <div class="empty-state hidden" id="emptyTrack" style="max-width:620px;margin:0 auto;">
+        <div class="empty-icon">🔎</div>
+        <p>No tickets found. Please check your Registration Number or Ticket ID.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script>
+    // ── Main Tab Switcher ───────────────
+    function switchMainTab(tab) {
+      document.querySelectorAll('.tabs .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelectorAll('.main-tab').forEach(p => p.classList.toggle('active', p.id === 'mainTab-' + tab));
+    }
+
+    // ── Submit Form ─────────────────────
+    const form = document.getElementById('ticketForm');
+    const formCard = document.getElementById('formCard');
+    const successCard = document.getElementById('successCard');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('studentName').value;
+      const regNo = document.getElementById('regNo').value;
+      const query = document.getElementById('queryText').value;
+      if (!name || !regNo || !query) return;
+      const ticket = createTicket(name, regNo, query);
+      document.getElementById('resultTicketId').textContent = 'Ticket ID: ' + ticket.id;
+      document.getElementById('resultRouted').textContent = 'Routed to: ' + ticket.departments.join(' & ');
+      formCard.classList.add('hidden');
+      successCard.classList.remove('hidden');
+      showToast('success', 'Ticket Created', `${ticket.id} — routed to ${ticket.departments.join(' & ')}`);
+    });
+
+    function resetForm() { form.reset(); successCard.classList.add('hidden'); formCard.classList.remove('hidden'); }
+
+    // ── Track Tickets ───────────────────
+    function handleTrack(e) {
+      e.preventDefault();
+      const input = document.getElementById('trackInput').value.trim();
+      const results = document.getElementById('trackResults');
+      const empty = document.getElementById('emptyTrack');
+      if (!input) return;
+
+      let tickets = [];
+      // Check if it's a ticket ID (starts with T)
+      if (input.toUpperCase().startsWith('T')) {
+        const t = getTicketById(input.toUpperCase());
+        if (t) tickets = [t];
+      } else {
+        // Treat as registration number
+        tickets = getTicketsByRegNo(input);
+      }
+
+      if (tickets.length === 0) {
+        results.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      results.innerHTML = tickets.map(t => {
+        const statusClass = t.status.toLowerCase();
+        const resolvedInfo = t.status === 'Resolved' ? `
+                    <div class="detail-row"><span class="detail-label">Resolved By</span><span class="detail-value">${t.resolvedBy || '—'}</span></div>
+                    ${t.reply ? `<div class="detail-row"><span class="detail-label">Reply</span><span class="detail-value">${t.reply}</span></div>` : ''}
+                ` : '';
+        const reroutedInfo = t.status === 'Rerouted' ? `
+                    <div class="detail-row"><span class="detail-label">Current Dept</span><span class="detail-value"><div class="dept-tags">${t.currentDepartments.map(d => `<span class="dept-tag">${d.replace(/_/g, ' ')}</span>`).join('')}</div></span></div>
+                ` : '';
+
+        return `
+                <div class="glass-card" style="margin-bottom:1rem;">
+                    <div class="flex-between" style="margin-bottom:1rem;">
+                        <h4 style="font-family:'Outfit',sans-serif;color:var(--accent-1);">${t.id}</h4>
+                        <span class="badge badge-${statusClass}">${t.status}</span>
+                    </div>
+                    <div class="detail-row"><span class="detail-label">Name</span><span class="detail-value">${t.name}</span></div>
+                    <div class="detail-row"><span class="detail-label">Reg No</span><span class="detail-value">${t.regNo}</span></div>
+                    <div class="detail-row"><span class="detail-label">Submitted</span><span class="detail-value">${t.date} · ${t.time}</span></div>
+                    <div class="detail-row"><span class="detail-label">Departments</span><span class="detail-value"><div class="dept-tags">${t.departments.map(d => `<span class="dept-tag">${d.replace(/_/g, ' ')}</span>`).join('')}</div></span></div>
+                    <div class="query-block">"${t.query}"</div>
+                    ${resolvedInfo}
+                    ${reroutedInfo}
+                    <!-- Timeline -->
+                    <details style="margin-top:.8rem;">
+                        <summary style="cursor:pointer;font-size:.85rem;font-weight:600;color:var(--text-secondary);">📋 Ticket History</summary>
+                        <div class="timeline" style="margin-top:.8rem;">
+                            ${(t.log || []).map(l => `
+                                <div class="timeline-item ${l.event.toLowerCase()}">
+                                    <div class="tl-time">${l.date} · ${l.time}</div>
+                                    <div class="tl-event">${l.event} — ${l.detail}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </details>
+                </div>`;
+      }).join('');
+    }
+
+    // ── Sidebar Toggle ──────────────────
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('sidebarOverlay').classList.toggle('open'); }
+
+    // ── Toast ───────────────────────────
+    function showToast(type, title, msg) {
+      const icons = { success: '✅', info: 'ℹ️', warning: '⚠️' }, c = document.getElementById('toastContainer'), t = document.createElement('div');
+      t.className = `toast toast-${type}`; t.innerHTML = `<div class="toast-icon">${icons[type] || '📢'}</div><div class="toast-body"><h4>${title}</h4><p>${msg}</p></div>`;
+      c.appendChild(t); setTimeout(() => t.classList.add('toast-out'), 3500); setTimeout(() => t.remove(), 4000);
+    }
+  </script>
+
+  <style>
+    /* Main tab panels - reuse existing tab-panel pattern */
+    .main-tab {
+      display: none;
+    }
+
+    .main-tab.active {
+      display: block;
+      animation: fadeIn .4s var(--ease-out);
+    }
+
+    details summary {
+      list-style: none;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details summary::before {
+      content: '▶ ';
+      font-size: .7rem;
+      transition: transform .2s;
+    }
+
+    details[open] summary::before {
+      content: '▼ ';
+    }
+  </style>
+</body>
+
+</html>
