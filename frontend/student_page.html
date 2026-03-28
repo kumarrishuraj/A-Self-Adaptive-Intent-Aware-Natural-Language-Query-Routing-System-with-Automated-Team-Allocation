@@ -18,18 +18,29 @@
       <div class="brand-icon">🎫</div>
       <h2>TicketFlow</h2>
     </div>
-    <div class="sidebar-section">Student</div>
-    <ul class="sidebar-nav">
-      <li><a href="student_page.html" class="active"><span class="nav-icon">📝</span> Submit Query</a></li>
-    </ul>
-    <div class="sidebar-section">Dashboards</div>
-    <ul class="sidebar-nav">
-      <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
-      <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
-      <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
-      <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD Math</a></li>
-    </ul>
-    <div class="sidebar-footer"><span class="version-badge">⚡ TicketFlow v2.0</span></div>
+            <div class="sidebar-section">Student</div>
+        <ul class="sidebar-nav">
+            <li><a href="student_page.html" class="active"><span class="nav-icon">📝</span> Student Portal</a></li>
+        </ul>
+
+        <div class="sidebar-section">Dashboards</div>
+        <ul class="sidebar-nav" style="max-height: 50vh; overflow-y: auto;">
+            <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
+            <li><a href="admissions_dashboard.html"><span class="nav-icon">🎓</span> Admissions</a></li>
+            <li><a href="examination_dashboard.html"><span class="nav-icon">📝</span> Examination</a></li>
+            <li><a href="fees_and_account_dashboard.html"><span class="nav-icon">💰</span> Fees and Account</a></li>
+            <li><a href="international_affair_dashboard.html"><span class="nav-icon">🌍</span> International affair</a></li>
+            <li><a href="it_dashboard.html"><span class="nav-icon">💻</span> IT</a></li>
+            <li><a href="residential_services_dashboard.html"><span class="nav-icon">🏠</span> Residential services</a></li>
+            <li><a href="security_and_safety_dashboard.html"><span class="nav-icon">🛡️</span> Security and safety</a></li>
+            <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
+            <li><a href="division_of_research_and_development_dashboard.html"><span class="nav-icon">🔬</span> Division of Research and Development</a></li>
+            <li><a href="library_dashboard.html"><span class="nav-icon">📖</span> Library</a></li>
+            <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
+            <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD MATH</a></li>
+            <li><a href="edu_rev_dashboard.html"><span class="nav-icon">📊</span> EDU-REV</a></li>
+        </ul>
+        <div class="sidebar-footer"><span class="version-badge">⚡ TicketFlow v2.0</span></div>
   </aside>
 
   <main class="main-content">
@@ -110,24 +121,36 @@
     const form = document.getElementById('ticketForm');
     const formCard = document.getElementById('formCard');
     const successCard = document.getElementById('successCard');
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
       const name = document.getElementById('studentName').value;
       const regNo = document.getElementById('regNo').value;
       const query = document.getElementById('queryText').value;
       if (!name || !regNo || !query) return;
-      const ticket = createTicket(name, regNo, query);
-      document.getElementById('resultTicketId').textContent = 'Ticket ID: ' + ticket.id;
-      document.getElementById('resultRouted').textContent = 'Routed to: ' + ticket.departments.join(' & ');
-      formCard.classList.add('hidden');
-      successCard.classList.remove('hidden');
-      showToast('success', 'Ticket Created', `${ticket.id} — routed to ${ticket.departments.join(' & ')}`);
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        const ticket = await createTicket(name, regNo, query);
+        document.getElementById('resultTicketId').textContent = 'Ticket ID: ' + ticket.id;
+        document.getElementById('resultRouted').textContent = 'Routed to: ' + ticket.departments.join(' & ');
+        formCard.classList.add('hidden');
+        successCard.classList.remove('hidden');
+        showToast('success', 'Ticket Created', `${ticket.id} — routed to ${ticket.departments.join(' & ')}`);
+      } catch (err) {
+        showToast('warning', 'Error', err.message);
+      } finally {
+        submitBtn.textContent = '🚀 Submit Ticket';
+        submitBtn.disabled = false;
+      }
     });
 
     function resetForm() { form.reset(); successCard.classList.add('hidden'); formCard.classList.remove('hidden'); }
 
     // ── Track Tickets ───────────────────
-    function handleTrack(e) {
+    async function handleTrack(e) {
       e.preventDefault();
       const input = document.getElementById('trackInput').value.trim();
       const results = document.getElementById('trackResults');
@@ -135,16 +158,18 @@
       if (!input) return;
 
       let tickets = [];
-      // Check if it's a ticket ID (starts with T)
       if (input.toUpperCase().startsWith('T')) {
-        const t = getTicketById(input.toUpperCase());
-        if (t) tickets = [t];
-      } else {
-        // Treat as registration number
-        tickets = getTicketsByRegNo(input);
+         showToast('warning', 'Notice', 'Please search by your Registration Number to view tickets.');
+         return;
       }
 
-      if (tickets.length === 0) {
+      try {
+        tickets = await getTicketsByRegNo(input);
+      } catch (err) {
+        console.error(err);
+      }
+
+      if (!tickets || tickets.length === 0) {
         results.innerHTML = '';
         empty.classList.remove('hidden');
         return;

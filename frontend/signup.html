@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — TicketFlow</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="glass-card animate-in" style="width: 100%; max-width: 420px; text-align: center;">
+    <div style="font-size: 3rem; margin-bottom: 1rem;">🎫</div>
+    <h2 style="margin-bottom: 0.5rem; font-family: 'Outfit', sans-serif;">Create Account</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Join TicketFlow to manage your queries</p>
+    
+    <form id="signupForm" autocomplete="off" style="text-align: left;">
+      <div class="form-group">
+        <label for="regName">Full Name</label>
+        <input type="text" id="regName" class="form-input" placeholder="e.g. John Doe" required />
+      </div>
+      <div class="form-group">
+        <label for="regNo">Registration Number</label>
+        <input type="text" id="regNo" class="form-input" placeholder="e.g. 12400000" required />
+      </div>
+      <div class="form-group">
+        <label for="regPass">Password</label>
+        <input type="password" id="regPass" class="form-input" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" id="btnSignup">Sign Up</button>
+    </form>
+    
+    <p style="margin-top: 2rem; color: var(--text-secondary); font-size: 0.9rem;">
+      Already have an account? <a href="login.html" style="color: var(--accent-1); text-decoration: none; font-weight: 500;">Login here</a>
+    </p>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('regName').value.trim();
+      const regNo = document.getElementById('regNo').value.trim();
+      const pwd = document.getElementById('regPass').value;
+      
+      const btn = document.getElementById('btnSignup');
+      btn.textContent = "Registering...";
+      btn.disabled = true;
+      
+      try {
+        await registerUser(name, regNo, pwd);
+        showToast('success', 'Success', 'Account created successfully! Redirecting...');
+        setTimeout(() => window.location.href = 'login.html', 1500);
+      } catch (err) {
+        showToast('warning', 'Error', err.message);
+        btn.textContent = "Sign Up";
+        btn.disabled = false;
+      }
+    });
+
+    function showToast(type, title, msg) {
+      const icons = { success: '✅', info: 'ℹ️', warning: '⚠️' };
+      const c = document.getElementById('toastContainer');
+      const t = document.createElement('div');
+      t.className = `toast toast-${type}`; 
+      t.innerHTML = `<div class="toast-icon">${icons[type] || '📢'}</div><div class="toast-body"><h4>${title}</h4><p>${msg}</p></div>`;
+      c.appendChild(t); 
+      setTimeout(() => t.classList.add('toast-out'), 3500); 
+      setTimeout(() => t.remove(), 4000);
+    }
+  </script>
+</body>
+</html>

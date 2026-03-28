@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description"
-        content="Placements team dashboard — manage and resolve placement-related student tickets." />
+    <meta name="description" content="Academics team dashboard — manage and resolve student tickets." />
     <title>Placements Dashboard — TicketFlow</title>
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -42,19 +41,28 @@
             <h2>TicketFlow</h2>
         </div>
 
-        <div class="sidebar-section">Student</div>
+                <div class="sidebar-section">Student</div>
         <ul class="sidebar-nav">
-            <li><a href="student_page.html"><span class="nav-icon">📝</span> Submit Query</a></li>
+            <li><a href="student_page.html"><span class="nav-icon">📝</span> Student Portal</a></li>
         </ul>
 
         <div class="sidebar-section">Dashboards</div>
-        <ul class="sidebar-nav">
+        <ul class="sidebar-nav" style="max-height: 50vh; overflow-y: auto;">
             <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
+            <li><a href="admissions_dashboard.html"><span class="nav-icon">🎓</span> Admissions</a></li>
+            <li><a href="examination_dashboard.html"><span class="nav-icon">📝</span> Examination</a></li>
+            <li><a href="fees_and_account_dashboard.html"><span class="nav-icon">💰</span> Fees and Account</a></li>
+            <li><a href="international_affair_dashboard.html"><span class="nav-icon">🌍</span> International affair</a></li>
+            <li><a href="it_dashboard.html"><span class="nav-icon">💻</span> IT</a></li>
+            <li><a href="residential_services_dashboard.html"><span class="nav-icon">🏠</span> Residential services</a></li>
+            <li><a href="security_and_safety_dashboard.html"><span class="nav-icon">🛡️</span> Security and safety</a></li>
             <li><a href="placements_dashboard.html" class="active"><span class="nav-icon">💼</span> Placements</a></li>
+            <li><a href="division_of_research_and_development_dashboard.html"><span class="nav-icon">🔬</span> Division of Research and Development</a></li>
+            <li><a href="library_dashboard.html"><span class="nav-icon">📖</span> Library</a></li>
             <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
-            <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD Math</a></li>
+            <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD MATH</a></li>
+            <li><a href="edu_rev_dashboard.html"><span class="nav-icon">📊</span> EDU-REV</a></li>
         </ul>
-
         <div class="sidebar-footer">
             <span class="version-badge">⚡ TicketFlow v2.0</span>
         </div>
@@ -65,7 +73,7 @@
         <!-- Hero -->
         <section class="page-hero">
             <h1>💼 <span class="gradient-text">Placements</span> Dashboard</h1>
-            <p>Manage and resolve student queries routed to the Placements department.</p>
+            <p>Manage and resolve student queries routed to the Academics department.</p>
         </section>
 
         <!-- Stats -->
@@ -163,7 +171,14 @@
     <script>
         const DEPT = 'Placements';
 
-        document.addEventListener('DOMContentLoaded', refresh);
+        // ── Init ────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!getCurrentUser()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            refresh();
+        });
 
         async function refresh() {
             const tickets = await fetchTickets(DEPT);
@@ -174,6 +189,7 @@
             renderLogs(tickets);
         }
 
+        // ── Stats ───────────────────────────────
         function renderStats(tickets) {
             const open = tickets.filter(t => t.status === 'Open').length;
             const resolved = tickets.filter(t => t.status === 'Resolved').length;
@@ -186,6 +202,7 @@
             `;
         }
 
+        // ── Open Table ──────────────────────────
         function renderOpenTable(tickets) {
             const tbody = document.getElementById('openTableBody');
             const empty = document.getElementById('emptyOpen');
@@ -212,6 +229,7 @@
             `).join('');
         }
 
+        // ── Resolved Table ──────────────────────
         function renderResolvedTable(tickets) {
             const tbody = document.getElementById('resolvedTableBody');
             const empty = document.getElementById('emptyResolved');
@@ -228,6 +246,7 @@
             `).join('');
         }
 
+        // ── Rerouted Table ──────────────────────
         function renderReroutedTable(tickets) {
             const tbody = document.getElementById('reroutedTableBody');
             const empty = document.getElementById('emptyRerouted');
@@ -244,6 +263,7 @@
             `).join('');
         }
 
+        // ── Logs ────────────────────────────────
         function renderLogs(tickets) {
             const container = document.getElementById('logsContainer');
             const empty = document.getElementById('emptyLogs');
@@ -269,11 +289,13 @@
             `).join('');
         }
 
+        // ── Tabs ────────────────────────────────
         function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
         }
 
+        // ── Actions ─────────────────────────────
         let resolveTargetId = null;
 
         function handleResolve(id) {
@@ -297,6 +319,7 @@
             refresh();
         }
 
+        // Close modal on overlay click
         document.getElementById('resolveModal').addEventListener('click', function (e) { if (e.target === this) closeResolveModal(); });
 
         async function handleReroute(id, newDept) {
@@ -306,11 +329,13 @@
             refresh();
         }
 
+        // ── Sidebar Toggle ──────────────────────
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
             document.getElementById('sidebarOverlay').classList.toggle('open');
         }
 
+        // ── Toast ───────────────────────────────
         function showToast(type, title, message) {
             const icons = { success: '✅', info: 'ℹ️', warning: '⚠️' };
             const container = document.getElementById('toastContainer');

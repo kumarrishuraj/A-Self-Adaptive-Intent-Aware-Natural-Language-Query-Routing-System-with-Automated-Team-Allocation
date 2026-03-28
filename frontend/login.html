@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — TicketFlow</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="glass-card animate-in" style="width: 100%; max-width: 420px; text-align: center;">
+    <div style="font-size: 3rem; margin-bottom: 1rem;">🎫</div>
+    <h2 style="margin-bottom: 0.5rem; font-family: 'Outfit', sans-serif;">Welcome Back</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Log in to access your dashboard</p>
+    
+    <form id="loginForm" autocomplete="off" style="text-align: left;">
+      <div class="form-group">
+        <label for="logRegNo">Registration Number</label>
+        <input type="text" id="logRegNo" class="form-input" placeholder="e.g. 12400000" required />
+      </div>
+      <div class="form-group">
+        <label for="logPass">Password</label>
+        <input type="password" id="logPass" class="form-input" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" id="btnLogin">Log In</button>
+    </form>
+    
+    <p style="margin-top: 2rem; color: var(--text-secondary); font-size: 0.9rem;">
+      Don't have an account? <a href="signup.html" style="color: var(--accent-1); text-decoration: none; font-weight: 500;">Create one</a>
+    </p>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const regNo = document.getElementById('logRegNo').value.trim();
+      const pwd = document.getElementById('logPass').value;
+      
+      const btn = document.getElementById('btnLogin');
+      btn.textContent = "Logging in...";
+      btn.disabled = true;
+      
+      try {
+        await loginUser(regNo, pwd);
+        showToast('success', 'Logged In', 'Redirecting to your dashboard...');
+        setTimeout(() => window.location.href = 'student_page.html', 1000);
+      } catch (err) {
+        showToast('warning', 'Error', err.message);
+        btn.textContent = "Log In";
+        btn.disabled = false;
+      }
+    });
+
+    function showToast(type, title, msg) {
+      const icons = { success: '✅', info: 'ℹ️', warning: '⚠️' };
+      const c = document.getElementById('toastContainer');
+      const t = document.createElement('div');
+      t.className = `toast toast-${type}`; 
+      t.innerHTML = `<div class="toast-icon">${icons[type] || '📢'}</div><div class="toast-body"><h4>${title}</h4><p>${msg}</p></div>`;
+      c.appendChild(t); 
+      setTimeout(() => t.classList.add('toast-out'), 3500); 
+      setTimeout(() => t.remove(), 4000);
+    }
+  </script>
+</body>
+</html>

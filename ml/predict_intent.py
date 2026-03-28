@@ -1,7 +1,9 @@
 import joblib
 from sentence_transformers import SentenceTransformer
-# Load trained classifier
-clf = joblib.load("models/intent_classifier.pkl")
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.path.join(BASE_DIR, "models", "intent_classifier.pkl")
+clf = joblib.load(MODEL_PATH)
 # Load SBERT model
 sbert = SentenceTransformer("all-MiniLM-L6-v2")
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Academics team dashboard — manage and resolve student tickets." />
-    <title>HOD ML Dashboard — TicketFlow</title>
+    <title>Examination Dashboard — TicketFlow</title>
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -50,7 +50,7 @@
         <ul class="sidebar-nav" style="max-height: 50vh; overflow-y: auto;">
             <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
             <li><a href="admissions_dashboard.html"><span class="nav-icon">🎓</span> Admissions</a></li>
-            <li><a href="examination_dashboard.html"><span class="nav-icon">📝</span> Examination</a></li>
+            <li><a href="examination_dashboard.html" class="active"><span class="nav-icon">📝</span> Examination</a></li>
             <li><a href="fees_and_account_dashboard.html"><span class="nav-icon">💰</span> Fees and Account</a></li>
             <li><a href="international_affair_dashboard.html"><span class="nav-icon">🌍</span> International affair</a></li>
             <li><a href="it_dashboard.html"><span class="nav-icon">💻</span> IT</a></li>
@@ -59,7 +59,7 @@
             <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
             <li><a href="division_of_research_and_development_dashboard.html"><span class="nav-icon">🔬</span> Division of Research and Development</a></li>
             <li><a href="library_dashboard.html"><span class="nav-icon">📖</span> Library</a></li>
-            <li><a href="hod_ml_dashboard.html" class="active"><span class="nav-icon">🤖</span> HOD ML</a></li>
+            <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
             <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD MATH</a></li>
             <li><a href="edu_rev_dashboard.html"><span class="nav-icon">📊</span> EDU-REV</a></li>
         </ul>
@@ -72,7 +72,7 @@
     <main class="main-content">
         <!-- Hero -->
         <section class="page-hero">
-            <h1>🤖 <span class="gradient-text">HOD ML</span> Dashboard</h1>
+            <h1>📝 <span class="gradient-text">Examination</span> Dashboard</h1>
             <p>Manage and resolve student queries routed to the Academics department.</p>
         </section>
 
@@ -169,7 +169,7 @@
 
     <script src="js/api.js"></script>
     <script>
-        const DEPT = 'HOD_ML';
+        const DEPT = 'Examination';
 
         // ── Init ────────────────────────────────
         document.addEventListener('DOMContentLoaded', () => {

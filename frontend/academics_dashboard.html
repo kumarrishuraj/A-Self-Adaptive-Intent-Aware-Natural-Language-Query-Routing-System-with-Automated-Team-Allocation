@@ -41,19 +41,28 @@
             <h2>TicketFlow</h2>
         </div>
 
-        <div class="sidebar-section">Student</div>
+                <div class="sidebar-section">Student</div>
         <ul class="sidebar-nav">
-            <li><a href="student_page.html"><span class="nav-icon">📝</span> Submit Query</a></li>
+            <li><a href="student_page.html"><span class="nav-icon">📝</span> Student Portal</a></li>
         </ul>
 
         <div class="sidebar-section">Dashboards</div>
-        <ul class="sidebar-nav">
+        <ul class="sidebar-nav" style="max-height: 50vh; overflow-y: auto;">
             <li><a href="academics_dashboard.html" class="active"><span class="nav-icon">📚</span> Academics</a></li>
+            <li><a href="admissions_dashboard.html"><span class="nav-icon">🎓</span> Admissions</a></li>
+            <li><a href="examination_dashboard.html"><span class="nav-icon">📝</span> Examination</a></li>
+            <li><a href="fees_and_account_dashboard.html"><span class="nav-icon">💰</span> Fees and Account</a></li>
+            <li><a href="international_affair_dashboard.html"><span class="nav-icon">🌍</span> International affair</a></li>
+            <li><a href="it_dashboard.html"><span class="nav-icon">💻</span> IT</a></li>
+            <li><a href="residential_services_dashboard.html"><span class="nav-icon">🏠</span> Residential services</a></li>
+            <li><a href="security_and_safety_dashboard.html"><span class="nav-icon">🛡️</span> Security and safety</a></li>
             <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
+            <li><a href="division_of_research_and_development_dashboard.html"><span class="nav-icon">🔬</span> Division of Research and Development</a></li>
+            <li><a href="library_dashboard.html"><span class="nav-icon">📖</span> Library</a></li>
             <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
-            <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD Math</a></li>
+            <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD MATH</a></li>
+            <li><a href="edu_rev_dashboard.html"><span class="nav-icon">📊</span> EDU-REV</a></li>
         </ul>
-
         <div class="sidebar-footer">
             <span class="version-badge">⚡ TicketFlow v2.0</span>
         </div>
@@ -163,7 +172,13 @@
         const DEPT = 'Academics';
 
         // ── Init ────────────────────────────────
-        document.addEventListener('DOMContentLoaded', refresh);
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!getCurrentUser()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            refresh();
+        });
 
         async function refresh() {
             const tickets = await fetchTickets(DEPT);

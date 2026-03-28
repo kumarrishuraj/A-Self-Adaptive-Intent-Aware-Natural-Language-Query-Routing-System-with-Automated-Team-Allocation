@@ -7,45 +7,45 @@
 
 /* ── CSS Variables ─────────────────────── */
 :root {
-  /* Deep indigo / dark palette */
-  --bg-primary: #06060f;
-  --bg-secondary: #0c0c24;
-  --bg-card: rgba(12, 12, 36, 0.75);
-  --bg-glass: rgba(255, 255, 255, 0.035);
-  --border-glass: rgba(255, 255, 255, 0.07);
-  --text-primary: #f0edf6;
-  --text-secondary: #a99ec4;
-  --text-muted: #6e628a;
+  /* Midnight Ocean */
+  --bg-primary: #030a16;
+  --bg-secondary: #0a1128;
+  --bg-card: rgba(10, 17, 40, 0.75);
+  --bg-glass: rgba(255, 255, 255, 0.04);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --text-primary: #e6f0fa;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;
 
-  /* Accent gradient — Violet, Rose & Cyan */
-  --accent-1: #a855f7;
-  --accent-2: #ec4899;
-  --accent-3: #06b6d4;
+  /* Accent gradient — Neon Cyan, Purple & Azure */
+  --accent-1: #00f2fe;
+  --accent-2: #4facfe;
+  --accent-3: #8a2be2;
   --gradient-accent: linear-gradient(135deg, var(--accent-1), var(--accent-2));
   --gradient-warm: linear-gradient(135deg, var(--accent-2), var(--accent-3));
   --gradient-cool: linear-gradient(135deg, var(--accent-3), var(--accent-1));
 
   /* Status */
-  --status-open: #06b6d4;
-  --status-resolved: #34d399;
-  --status-rerouted: #f59e0b;
+  --status-open: #00f2fe;
+  --status-resolved: #10b981;
+  --status-rerouted: #fbbf24;
 
   /* Surfaces */
-  --input-bg: rgba(255, 255, 255, 0.05);
-  --input-border: rgba(168, 85, 247, 0.18);
+  --input-bg: rgba(255, 255, 255, 0.06);
+  --input-border: rgba(0, 242, 254, 0.25);
   --input-focus: var(--accent-1);
 
   /* Sidebar */
   --sidebar-w: 260px;
   --sidebar-collapsed: 68px;
-  --sidebar-bg: rgba(8, 8, 28, 0.92);
+  --sidebar-bg: rgba(5, 12, 30, 0.92);
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, .4);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, .5);
-  --shadow-glow: 0 0 30px rgba(168, 85, 247, .15);
-  --shadow-glow-pink: 0 0 30px rgba(236, 72, 153, .12);
+  --shadow-glow: 0 0 30px rgba(0, 242, 254, .2);
+  --shadow-glow-pink: 0 0 30px rgba(79, 172, 254, .15);
 
   /* Radius */
   --radius-sm: 8px;
@@ -87,9 +87,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 15% 8%, rgba(168, 85, 247, .12) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 85% 85%, rgba(236, 72, 153, .08) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(6, 182, 212, .06) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 60% at 15% 8%, rgba(0, 242, 254, .12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 85%, rgba(79, 172, 254, .08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(138, 43, 226, .06) 0%, transparent 55%);
   z-index: 0;
   pointer-events: none;
 }
