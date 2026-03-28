@@ -18,29 +18,30 @@
       <div class="brand-icon">🎫</div>
       <h2>TicketFlow</h2>
     </div>
-            <div class="sidebar-section">Student</div>
-        <ul class="sidebar-nav">
-            <li><a href="student_page.html" class="active"><span class="nav-icon">📝</span> Student Portal</a></li>
-        </ul>
+    <div class="sidebar-section">Student</div>
+    <ul class="sidebar-nav">
+      <li><a href="student_page.html" class="active"><span class="nav-icon">📝</span> Student Portal</a></li>
+    </ul>
 
-        <div class="sidebar-section">Dashboards</div>
-        <ul class="sidebar-nav" style="max-height: 50vh; overflow-y: auto;">
-            <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
-            <li><a href="admissions_dashboard.html"><span class="nav-icon">🎓</span> Admissions</a></li>
-            <li><a href="examination_dashboard.html"><span class="nav-icon">📝</span> Examination</a></li>
-            <li><a href="fees_and_account_dashboard.html"><span class="nav-icon">💰</span> Fees and Account</a></li>
-            <li><a href="international_affair_dashboard.html"><span class="nav-icon">🌍</span> International affair</a></li>
-            <li><a href="it_dashboard.html"><span class="nav-icon">💻</span> IT</a></li>
-            <li><a href="residential_services_dashboard.html"><span class="nav-icon">🏠</span> Residential services</a></li>
-            <li><a href="security_and_safety_dashboard.html"><span class="nav-icon">🛡️</span> Security and safety</a></li>
-            <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
-            <li><a href="division_of_research_and_development_dashboard.html"><span class="nav-icon">🔬</span> Division of Research and Development</a></li>
-            <li><a href="library_dashboard.html"><span class="nav-icon">📖</span> Library</a></li>
-            <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
-            <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD MATH</a></li>
-            <li><a href="edu_rev_dashboard.html"><span class="nav-icon">📊</span> EDU-REV</a></li>
-        </ul>
-        <div class="sidebar-footer"><span class="version-badge">⚡ TicketFlow v2.0</span></div>
+    <div class="sidebar-section">Dashboards</div>
+    <ul class="sidebar-nav" style="max-height: 50vh; overflow-y: auto;">
+      <li><a href="academics_dashboard.html"><span class="nav-icon">📚</span> Academics</a></li>
+      <li><a href="admissions_dashboard.html"><span class="nav-icon">🎓</span> Admissions</a></li>
+      <li><a href="examination_dashboard.html"><span class="nav-icon">📝</span> Examination</a></li>
+      <li><a href="fees_and_account_dashboard.html"><span class="nav-icon">💰</span> Fees and Account</a></li>
+      <li><a href="international_affair_dashboard.html"><span class="nav-icon">🌍</span> International affair</a></li>
+      <li><a href="it_dashboard.html"><span class="nav-icon">💻</span> IT</a></li>
+      <li><a href="residential_services_dashboard.html"><span class="nav-icon">🏠</span> Residential services</a></li>
+      <li><a href="security_and_safety_dashboard.html"><span class="nav-icon">🛡️</span> Security and safety</a></li>
+      <li><a href="placements_dashboard.html"><span class="nav-icon">💼</span> Placements</a></li>
+      <li><a href="division_of_research_and_development_dashboard.html"><span class="nav-icon">🔬</span> Division of
+          Research and Development</a></li>
+      <li><a href="library_dashboard.html"><span class="nav-icon">📖</span> Library</a></li>
+      <li><a href="hod_ml_dashboard.html"><span class="nav-icon">🤖</span> HOD ML</a></li>
+      <li><a href="hod_math_dashboard.html"><span class="nav-icon">📐</span> HOD MATH</a></li>
+      <li><a href="edu_rev_dashboard.html"><span class="nav-icon">📊</span> EDU-REV</a></li>
+    </ul>
+    <div class="sidebar-footer"><span class="version-badge">⚡ TicketFlow v2.0</span></div>
   </aside>
 
   <main class="main-content">
@@ -111,6 +112,20 @@
 
   <script src="js/api.js"></script>
   <script>
+    // ── Pre-fill User Details ───────────
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = getCurrentUser();
+      if (user) {
+        document.getElementById('studentName').value = user.name;
+        document.getElementById('studentName').readOnly = true;
+        document.getElementById('studentName').style.opacity = '0.7';
+
+        document.getElementById('regNo').value = user.regNo;
+        document.getElementById('regNo').readOnly = true;
+        document.getElementById('regNo').style.opacity = '0.7';
+      }
+    });
+
     // ── Main Tab Switcher ───────────────
     function switchMainTab(tab) {
       document.querySelectorAll('.tabs .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
@@ -159,8 +174,8 @@
 
       let tickets = [];
       if (input.toUpperCase().startsWith('T')) {
-         showToast('warning', 'Notice', 'Please search by your Registration Number to view tickets.');
-         return;
+        showToast('warning', 'Notice', 'Please search by your Registration Number to view tickets.');
+        return;
       }
 
       try {
@@ -222,7 +237,7 @@
     function showToast(type, title, msg) {
       const icons = { success: '✅', info: 'ℹ️', warning: '⚠️' }, c = document.getElementById('toastContainer'), t = document.createElement('div');
       t.className = `toast toast-${type}`; t.innerHTML = `<div class="toast-icon">${icons[type] || '📢'}</div><div class="toast-body"><h4>${title}</h4><p>${msg}</p></div>`;
-      c.appendChild(t); setTimeout(() => t.classList.add('toast-out'), 3500); setTimeout(() => t.remove(), 4000);
+      c.appendChild(t); setTimeout(() => t.classList.add('toast-out'), 6000); setTimeout(() => t.remove(), 6500);
     }
   </script>
 
