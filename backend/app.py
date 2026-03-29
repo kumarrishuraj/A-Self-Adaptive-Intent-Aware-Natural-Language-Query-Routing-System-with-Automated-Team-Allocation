@@ -243,8 +243,7 @@ def resolve_ticket(ticket_id):
 
     date_str = _today()
     time_str = _now()
-    log_detail = f"Resolved by {department}{': \"' + reply + '\"' if reply else ''}"
-
+    log_detail = f"Resolved by {department}" + (f': "{reply}"' if reply else "")
     c.execute("INSERT INTO ticket_logs (ticket_id, event, date, time, detail) VALUES (?, 'Resolved', ?, ?, ?)",
               (ticket_id, date_str, time_str, log_detail))
     conn.commit()
