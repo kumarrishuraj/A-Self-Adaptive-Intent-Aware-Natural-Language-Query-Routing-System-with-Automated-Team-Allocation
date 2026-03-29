@@ -7,55 +7,59 @@
 
 /* ── CSS Variables ─────────────────────── */
 :root {
-  /* Midnight Ocean */
-  --bg-primary: #030a16;
-  --bg-secondary: #0a1128;
-  --bg-card: rgba(10, 17, 40, 0.75);
+  /* Deep Dark Backgrounds (Unchanged) */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2128;
+  
+  /* Brightened Glass Cards & Borders for High Contrast */
   --bg-glass: rgba(255, 255, 255, 0.04);
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --text-primary: #e6f0fa;
-  --text-secondary: #a0aec0;
-  --text-muted: #718096;
+  --border-glass: rgba(255, 255, 255, 0.12);
+  
+  /* High Contrast pure whites for Crisp Readability */
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
 
-  /* Accent gradient — Neon Cyan, Purple & Azure */
-  --accent-1: #00f2fe;
-  --accent-2: #4facfe;
-  --accent-3: #8a2be2;
+  /* Aesthetic Cyan Accents */
+  --accent-1: #06b6d4;  /* Cyan-500 */
+  --accent-2: #22d3ee;  /* Cyan-400 */
+  --accent-3: #67e8f9;  /* Cyan-300 */
   --gradient-accent: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  --gradient-warm: linear-gradient(135deg, var(--accent-2), var(--accent-3));
-  --gradient-cool: linear-gradient(135deg, var(--accent-3), var(--accent-1));
+  --gradient-warm: var(--gradient-accent);
+  --gradient-cool: var(--gradient-accent);
 
-  /* Status */
-  --status-open: #00f2fe;
-  --status-resolved: #10b981;
+  /* Status Tokens */
+  --status-open: #06b6d4;
+  --status-resolved: #34d399;
   --status-rerouted: #fbbf24;
 
-  /* Surfaces */
-  --input-bg: rgba(255, 255, 255, 0.06);
-  --input-border: rgba(0, 242, 254, 0.25);
+  /* Form & Interactive Elements */
+  --input-bg: rgba(0, 0, 0, 0.2);
+  --input-border: rgba(255, 255, 255, 0.15);
   --input-focus: var(--accent-1);
 
-  /* Sidebar */
+  /* Sidebar Constants */
   --sidebar-w: 260px;
   --sidebar-collapsed: 68px;
-  --sidebar-bg: rgba(5, 12, 30, 0.92);
+  --sidebar-bg: rgba(22, 27, 34, 0.7);
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, .4);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, .5);
-  --shadow-glow: 0 0 30px rgba(0, 242, 254, .2);
-  --shadow-glow-pink: 0 0 30px rgba(79, 172, 254, .15);
+  /* Diffuse Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 15px rgba(6, 182, 212, 0.25);
+  --shadow-glow-pink: var(--shadow-sm);
 
-  /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  /* Core Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /* Transitions */
+  /* Easings */
   --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --duration: .35s;
+  --duration: .2s;
 }
 
 /* ── Reset & Base ──────────────────────── */
@@ -157,7 +161,7 @@ a:hover {
   justify-content: center;
   font-size: 1.15rem;
   flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(168, 85, 247, .3);
+  box-shadow: 0 4px 16px rgba(6, 182, 212, .3);
 }
 
 .sidebar-brand h2 {
@@ -220,7 +224,7 @@ a:hover {
 
 .sidebar-nav a.active {
   color: #fff;
-  background: rgba(168, 85, 247, .15);
+  background: rgba(6, 182, 212, .15);
   box-shadow: inset 3px 0 0 var(--accent-1);
 }
 
@@ -228,7 +232,7 @@ a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(168, 85, 247, .08), transparent);
+  background: linear-gradient(90deg, rgba(6, 182, 212, .08), transparent);
   pointer-events: none;
 }
 
@@ -246,8 +250,8 @@ a:hover {
   gap: .4rem;
   padding: .3rem .7rem;
   border-radius: var(--radius-full);
-  background: rgba(168, 85, 247, .08);
-  border: 1px solid rgba(168, 85, 247, .15);
+  background: rgba(6, 182, 212, .08);
+  border: 1px solid rgba(6, 182, 212, .15);
   font-size: .7rem;
   font-weight: 600;
   color: var(--accent-1);
@@ -276,8 +280,8 @@ a:hover {
 }
 
 .sidebar-toggle:hover {
-  background: rgba(168, 85, 247, .12);
-  border-color: rgba(168, 85, 247, .3);
+  background: rgba(6, 182, 212, .12);
+  border-color: rgba(6, 182, 212, .3);
 }
 
 /* Overlay for mobile */
@@ -448,7 +452,7 @@ a:hover {
 
 .tab-btn.active {
   color: var(--accent-1);
-  background: rgba(168, 85, 247, .12);
+  background: rgba(6, 182, 212, .12);
   box-shadow: var(--shadow-sm);
 }
 
@@ -494,7 +498,7 @@ a:hover {
 }
 
 .data-table tbody tr:hover {
-  background: rgba(168, 85, 247, .04);
+  background: rgba(6, 182, 212, .04);
 }
 
 .data-table tbody td {
@@ -533,9 +537,9 @@ a:hover {
   border-radius: var(--radius-full);
   font-size: .68rem;
   font-weight: 600;
-  background: rgba(168, 85, 247, .1);
+  background: rgba(6, 182, 212, .1);
   color: var(--accent-1);
-  border: 1px solid rgba(168, 85, 247, .15);
+  border: 1px solid rgba(6, 182, 212, .15);
   white-space: nowrap;
 }
 
@@ -635,11 +639,11 @@ a:hover {
 .btn-primary {
   background: var(--gradient-accent);
   color: #fff;
-  box-shadow: 0 4px 18px rgba(168, 85, 247, .3);
+  box-shadow: 0 4px 18px rgba(6, 182, 212, .3);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 24px rgba(168, 85, 247, .4);
+  box-shadow: 0 6px 24px rgba(6, 182, 212, .4);
   transform: translateY(-1px);
 }
 
@@ -713,13 +717,13 @@ a:hover {
 }
 
 .reroute-select:hover {
-  border-color: rgba(168, 85, 247, .35);
+  border-color: rgba(6, 182, 212, .35);
   background-color: rgba(255, 255, 255, .08);
 }
 
 .reroute-select:focus {
   border-color: var(--accent-1);
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, .15);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, .15);
 }
 
 .reroute-select option {
@@ -764,7 +768,7 @@ a:hover {
 .form-input:focus,
 .form-textarea:focus {
   border-color: var(--input-focus);
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, .15);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, .15);
 }
 
 .form-textarea {
@@ -818,7 +822,7 @@ a:hover {
 }
 
 .toast-info .toast-icon {
-  background: rgba(168, 85, 247, .15);
+  background: rgba(6, 182, 212, .15);
   color: var(--accent-1);
 }
 
@@ -958,7 +962,7 @@ a:hover {
 }
 
 .log-card:hover {
-  border-color: rgba(168, 85, 247, .2);
+  border-color: rgba(6, 182, 212, .2);
 }
 
 .log-card-header {

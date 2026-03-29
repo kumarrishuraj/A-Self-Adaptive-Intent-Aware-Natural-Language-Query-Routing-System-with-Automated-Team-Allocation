@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: nlp-routing-backend
+    env: python
+    region: ohio
+    plan: free # Can upgrade to starter if SBERT OOM occurs
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && gunicorn app:app"
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nlp-routing-db
+          property: connectionString
+
+databases:
+  - name: nlp-routing-db
+    databaseName: ticketflow
+    user: ticketflow_user
+    plan: free

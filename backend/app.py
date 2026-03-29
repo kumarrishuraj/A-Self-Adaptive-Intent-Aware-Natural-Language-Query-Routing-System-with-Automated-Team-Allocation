@@ -1,23 +1,47 @@
 import sys
 import os
 import json
-from datetime import datetime
+import uuid
+import jwt
+from datetime import datetime, timedelta
+from functools import wraps
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
-
 from database import get_db_connection
 from routing import route_query
 
 app = Flask(__name__)
 # Enable CORS so frontend HTML files can access it
 CORS(app)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key_here')
 
 def _now():
     return datetime.now().strftime("%H:%M")
 
 def _today():
     return datetime.now().strftime("%d %b %Y")
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        if 'Authorization' in request.headers:
+            auth_header = request.headers['Authorization']
+            if auth_header.startswith('Bearer '):
+                token = auth_header.split(" ")[1]
+                
+        if not token:
+            return jsonify({'error': 'Token is missing or invalid!'}), 401
+            
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+            current_user = data['regNo']
+        except Exception as e:
+            return jsonify({'error': 'Token is invalid or expired!'}), 401
+            
+        return f(current_user, *args, **kwargs)
+    return decorated
 
 @app.route("/")
 def home():
@@ -46,7 +70,13 @@ def signup():
               (name, regNo, password_hash))
     conn.commit()
     conn.close()
-    return jsonify({"message": "User registered successfully"}), 201
+    
+    token = jwt.encode({
+        'regNo': regNo,
+        'exp': datetime.utcnow() + timedelta(days=7)
+    }, app.config['SECRET_KEY'], algorithm="HS256")
+    
+    return jsonify({"message": "User registered successfully", "token": token}), 201
 
 @app.route("/api/login", methods=["POST"])
 def login():
@@ -64,13 +94,19 @@ def login():
     conn.close()
 
     if user and check_password_hash(user["password_hash"], password):
-        return jsonify({"user": {"name": user["name"], "regNo": user["reg_no"]}}), 200
+        token = jwt.encode({
+            'regNo': user["reg_no"],
+            'exp': datetime.utcnow() + timedelta(days=7)
+        }, app.config['SECRET_KEY'], algorithm="HS256")
+        
+        return jsonify({"user": {"name": user["name"], "regNo": user["reg_no"]}, "token": token}), 200
     else:
         return jsonify({"error": "Invalid registration number or password."}), 401
 
 # --- Tickets ---
 @app.route("/api/tickets/create", methods=["POST"])
-def create_ticket():
+@token_required
+def create_ticket(current_user):
     data = request.json
     name = data.get("name")
     regNo = data.get("regNo")
@@ -78,15 +114,17 @@ def create_ticket():
 
     if not name or not regNo or not query:
         return jsonify({"error": "Missing fields"}), 400
+        
+    if current_user != regNo:
+        return jsonify({"error": "Unauthorized ticket creation."}), 403
 
     departments = route_query(query)
 
     conn = get_db_connection()
     c = conn.cursor()
 
-    c.execute("SELECT COUNT(*) as cnt FROM tickets")
-    count = c.fetchone()["cnt"]
-    ticket_id = "T" + str(1001 + count)
+    # robust random ID
+    ticket_id = "T-" + str(uuid.uuid4())[:8].upper()
 
     date_str = _today()
     time_str = _now()
@@ -154,7 +192,11 @@ def _fetch_ticket_full(ticket_id, conn):
     return _build_ticket_json(t, current_depts, past_depts, logs)
 
 @app.route("/api/tickets/student/<reg_no>", methods=["GET"])
-def get_student_tickets(reg_no):
+@token_required
+def get_student_tickets(current_user, reg_no):
+    if current_user != reg_no:
+        return jsonify({"error": "Unauthorized to view these tickets."}), 403
+
     conn = get_db_connection()
     c = conn.cursor()
     c.execute("SELECT id FROM tickets WHERE reg_no = ? ORDER BY id DESC", (reg_no,))
@@ -167,6 +209,7 @@ def get_student_tickets(reg_no):
     return jsonify(tickets), 200
 
 @app.route("/api/tickets/dept/<department>", methods=["GET"])
+# Note: For real world apps this should also be @token_required and verify if the user is staff for that dept
 def get_dept_tickets(department):
     conn = get_db_connection()
     c = conn.cursor()
@@ -187,6 +230,7 @@ def get_dept_tickets(department):
     return jsonify(tickets), 200
 
 @app.route("/api/tickets/resolve/<ticket_id>", methods=["POST"])
+# Note: Should be restricted to department staff securely
 def resolve_ticket(ticket_id):
     data = request.json
     reply = data.get("reply", "")
@@ -210,6 +254,7 @@ def resolve_ticket(ticket_id):
     return jsonify(t_json), 200
 
 @app.route("/api/tickets/reroute", methods=["POST"])
+# Note: Should be restricted to department staff securely
 def reroute_ticket():
     data = request.json
     ticket_id = data.get("ticket_id")
@@ -251,4 +296,6 @@ def reroute_ticket():
     return jsonify(updated), 200
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    debug_mode = os.environ.get("FLASK_ENV") != "production"
+    app.run(debug=debug_mode, host="0.0.0.0", port=port)
