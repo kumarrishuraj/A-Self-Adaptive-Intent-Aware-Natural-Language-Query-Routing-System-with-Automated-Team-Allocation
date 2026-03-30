@@ -14,14 +14,16 @@ IF NOT EXIST "venv\.installed" (
     
     echo Installing or verifying required dependencies...
     call venv\Scripts\activate.bat
-    pip install -r backend\requirements.txt
+    python -m pip install --upgrade pip
+    python -m pip install -r backend\requirements.txt
     
     IF %ERRORLEVEL% EQU 0 (
         echo Dependencies installed successfully!
         echo done > venv\.installed
     ) ELSE (
-        echo Error installing dependencies. Please check the terminal for details.
+        echo Error installing dependencies. Please show the error messages above to the developer.
         pause
+        exit /b 1
     )
     echo.
 )
@@ -29,7 +31,7 @@ IF NOT EXIST "venv\.installed" (
 :: Step 1. Start the Flask Backend Server in a separate window
 echo Starting the Python Backend Server...
 cd backend
-start "TicketFlow Backend" cmd /k "..\venv\Scripts\activate && python app.py"
+start "TicketFlow Backend" cmd /k "..\venv\Scripts\python.exe app.py"
 cd ..
 
 :: Step 2. Wait 3 seconds to let the server boot up
