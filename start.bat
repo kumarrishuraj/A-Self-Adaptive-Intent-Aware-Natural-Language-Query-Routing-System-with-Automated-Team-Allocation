@@ -4,16 +4,25 @@ echo Starting TicketFlow NLP Routing System
 echo --------------------------------------
 echo.
 
-:: Setup Virtual Environment if it doesn't exist
-IF NOT EXIST "venv\Scripts\activate.bat" (
-    echo First-time setup: Creating virtual environment...
-    python -m venv venv
+:: Setup Virtual Environment if it doesn't exist or dependencies aren't installed
+IF NOT EXIST "venv\.installed" (
+    echo First-time setup: Checking virtual environment...
+    IF NOT EXIST "venv\Scripts\activate.bat" (
+        echo Creating virtual environment...
+        python -m venv venv
+    )
     
-    echo Installing required dependencies...
+    echo Installing or verifying required dependencies...
     call venv\Scripts\activate.bat
     pip install -r backend\requirements.txt
     
-    echo Dependencies installed successfully!
+    IF %ERRORLEVEL% EQU 0 (
+        echo Dependencies installed successfully!
+        echo done > venv\.installed
+    ) ELSE (
+        echo Error installing dependencies. Please check the terminal for details.
+        pause
+    )
     echo.
 )
 
