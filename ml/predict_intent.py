@@ -4,8 +4,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, "models", "intent_classifier.pkl")
 clf = joblib.load(MODEL_PATH)
-# Load SBERT model
-sbert = SentenceTransformer("all-MiniLM-L6-v2")
+# Load offline SBERT model
+SBERT_MODEL_PATH = os.path.join(BASE_DIR, "models", "all-MiniLM-L6-v2")
+sbert = SentenceTransformer(SBERT_MODEL_PATH)
 
 
 def predict_intent(query):
