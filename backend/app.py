@@ -109,56 +109,60 @@ def login():
 @app.route("/api/tickets/create", methods=["POST"])
 @token_required
 def create_ticket(current_user):
-    data = request.json
-    name = data.get("name")
-    regNo = data.get("regNo")
-    query = data.get("query")
-
-    if not name or not regNo or not query:
-        return jsonify({"error": "Missing fields"}), 400
+    try:
+        data = request.json
+        name = data.get("name")
+        regNo = data.get("regNo")
+        query = data.get("query")
         
-    if current_user != regNo:
-        return jsonify({"error": "Unauthorized ticket creation."}), 403
+        if not name or not regNo or not query:
+            return jsonify({"error": "Missing fields"}), 400
+            
+        if current_user != regNo:
+            return jsonify({"error": "Unauthorized ticket creation."}), 403
 
-    departments = route_query(query)
+        departments = route_query(query)
 
-    conn = get_db_connection()
-    c = conn.cursor()
+        conn = get_db_connection()
+        c = conn.cursor()
 
-    # robust random ID
-    ticket_id = "T-" + str(uuid.uuid4())[:8].upper()
+        # robust random ID
+        ticket_id = "T-" + str(uuid.uuid4())[:8].upper()
 
-    date_str = _today()
-    time_str = _now()
+        date_str = _today()
+        time_str = _now()
 
-    c.execute("""
-        INSERT INTO tickets (id, name, reg_no, query, date, time, status, resolved_by, reply)
-        VALUES (?, ?, ?, ?, ?, ?, 'Open', NULL, NULL)
-    """, (ticket_id, name, regNo, query, date_str, time_str))
+        c.execute("""
+            INSERT INTO tickets (id, name, reg_no, query, date, time, status, resolved_by, reply)
+            VALUES (?, ?, ?, ?, ?, ?, 'Open', NULL, NULL)
+        """, (ticket_id, name, regNo, query, date_str, time_str))
 
-    for dept in departments:
-        c.execute("INSERT INTO ticket_departments (ticket_id, department_name, is_current) VALUES (?, ?, ?)",
-                  (ticket_id, dept, True))
+        for dept in departments:
+            c.execute("INSERT INTO ticket_departments (ticket_id, department_name, is_current) VALUES (?, ?, ?)",
+                      (ticket_id, dept, True))
 
-    log_detail = f"Ticket created by {name}"
-    c.execute("INSERT INTO ticket_logs (ticket_id, event, date, time, detail) VALUES (?, 'Created', ?, ?, ?)",
-              (ticket_id, date_str, time_str, log_detail))
+        log_detail = f"Ticket created by {name}"
+        c.execute("INSERT INTO ticket_logs (ticket_id, event, date, time, detail) VALUES (?, 'Created', ?, ?, ?)",
+                  (ticket_id, date_str, time_str, log_detail))
 
-    route_detail = f"Routed to {', '.join(departments)}"
-    c.execute("INSERT INTO ticket_logs (ticket_id, event, date, time, detail) VALUES (?, 'Routed', ?, ?, ?)",
-              (ticket_id, date_str, time_str, route_detail))
+        route_detail = f"Routed to {', '.join(departments)}"
+        c.execute("INSERT INTO ticket_logs (ticket_id, event, date, time, detail) VALUES (?, 'Routed', ?, ?, ?)",
+                  (ticket_id, date_str, time_str, route_detail))
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
-    return jsonify({
-        "id": ticket_id,
-        "name": name,
-        "regNo": regNo,
-        "query": query,
-        "departments": departments,
-        "status": "Open"
-    }), 201
+        return jsonify({
+            "id": ticket_id,
+            "name": name,
+            "regNo": regNo,
+            "query": query,
+            "departments": departments,
+            "status": "Open"
+        }), 201
+    except Exception as e:
+        import traceback
+        return jsonify({"error": str(e), "traceback": traceback.format_exc()}), 500
 
 def _build_ticket_json(t, current_depts, past_depts, logs):
     return {
