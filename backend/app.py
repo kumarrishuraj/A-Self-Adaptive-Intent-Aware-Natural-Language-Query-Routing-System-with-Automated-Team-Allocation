@@ -137,8 +137,8 @@ def create_ticket(current_user):
     """, (ticket_id, name, regNo, query, date_str, time_str))
 
     for dept in departments:
-        c.execute("INSERT INTO ticket_departments (ticket_id, department_name, is_current) VALUES (?, ?, 1)",
-                  (ticket_id, dept))
+        c.execute("INSERT INTO ticket_departments (ticket_id, department_name, is_current) VALUES (?, ?, ?)",
+                  (ticket_id, dept, True))
 
     log_detail = f"Ticket created by {name}"
     c.execute("INSERT INTO ticket_logs (ticket_id, event, date, time, detail) VALUES (?, 'Created', ?, ?, ?)",
@@ -275,11 +275,11 @@ def reroute_ticket():
     from_depts = ", ".join(t_json["currentDepartments"])
 
     # Mark current as not current
-    c.execute("UPDATE ticket_departments SET is_current = 0 WHERE ticket_id = ?", (ticket_id,))
+    c.execute("UPDATE ticket_departments SET is_current = ? WHERE ticket_id = ?", (False, ticket_id))
 
     # Insert new current department
-    c.execute("INSERT INTO ticket_departments (ticket_id, department_name, is_current) VALUES (?, ?, 1)",
-              (ticket_id, new_department))
+    c.execute("INSERT INTO ticket_departments (ticket_id, department_name, is_current) VALUES (?, ?, ?)",
+              (ticket_id, new_department, True))
 
     c.execute("UPDATE tickets SET status = 'Open' WHERE id = ?", (ticket_id,))
 
