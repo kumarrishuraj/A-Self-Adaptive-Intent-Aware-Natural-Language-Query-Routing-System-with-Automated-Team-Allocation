@@ -1,15 +1,12 @@
 @echo off
 set "SCRIPT_DIR=%~dp0"
 cd /d "%SCRIPT_DIR%"
-
 echo --------------------------------------
 echo Starting TicketFlow NLP Routing System
 echo --------------------------------------
 echo.
-
 :: Setup Virtual Environment if it doesn't exist or dependencies aren't installed
 IF EXIST "venv\.installed" GOTO start_server
-
 echo First-time setup: Checking virtual environment...
 IF EXIST "venv\Scripts\activate.bat" GOTO install_deps
 echo Creating virtual environment...
@@ -32,22 +29,15 @@ IF ERRORLEVEL 1 (
 echo Dependencies installed successfully!
 echo done > venv\.installed
 echo.
-
 :start_server
-
-:: Step 1. Start the Flask Backend Server in a separate window
-echo Starting the Python Backend Server...
-cd backend
-start "TicketFlow Backend" cmd /k "..\venv\Scripts\python.exe app.py"
-cd /d "%SCRIPT_DIR%"
-
-:: Step 2. Wait 3 seconds to let the server boot up
-ping 127.0.0.1 -n 4 > nul
-
-:: Step 3. Open the Frontend naturally in your default browser
+:: Step 1. Open the Frontend UI using Python (100% reliable across environments)
 echo Opening Frontend UI...
-start "" "%SCRIPT_DIR%frontend\signup.html"
+venv\Scripts\python.exe -c "import webbrowser, os; webbrowser.open('file:///' + os.path.abspath('frontend/signup.html').replace('\\', '/'))"
 
+:: Step 2. Start the Flask Backend Server in the CURRENT terminal window
 echo.
-echo Setup Complete! The backend is running securely in the new black window.
-echo You can minimize that window, but DO NOT close it while using the app.
+echo Starting the Python Backend Server...
+echo The server logs will appear below. Keep this window open!
+echo -------------------------------------------------------------
+cd backend
+..\venv\Scripts\python.exe app.py

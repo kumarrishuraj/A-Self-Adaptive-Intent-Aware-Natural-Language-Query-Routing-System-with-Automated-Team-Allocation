@@ -8,10 +8,12 @@ from functools import wraps
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import get_db_connection
+from database import get_db_connection, init_db
 from routing import route_query
 
 app = Flask(__name__)
+# Initialize database tables
+init_db()
 # Enable CORS so frontend HTML files can access it
 CORS(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key_here')
