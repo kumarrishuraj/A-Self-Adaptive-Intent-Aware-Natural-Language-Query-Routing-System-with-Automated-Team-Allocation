@@ -8,7 +8,6 @@ clf = joblib.load(MODEL_PATH)
 SBERT_MODEL_PATH = os.path.join(BASE_DIR, "models", "all-MiniLM-L6-v2")
 sbert = SentenceTransformer(SBERT_MODEL_PATH)
 
-
 def predict_intent(query):
 
     # Convert query to embedding
