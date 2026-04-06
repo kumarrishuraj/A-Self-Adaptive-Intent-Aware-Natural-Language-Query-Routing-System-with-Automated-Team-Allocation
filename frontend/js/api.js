@@ -9,7 +9,7 @@ const isLocal = window.location.hostname === '127.0.0.1' || window.location.host
 
 // ⚠️ IMPORTANT: BEFORE DEPLOYING TO VERCEL, REPLACE THIS STRING WITH YOUR LIVE RENDER URL!
 // Example: 'https://nlp-routing-backend.onrender.com/api'
-const API_BASE = isLocal ? 'http://127.0.0.1:5000/api' : 'https://web-production-31bbb.up.railway.app/api';
+const API_BASE = isLocal ? 'http://127.0.0.1:5000/api' : '/api';
 
 // ── Reroute Department List ───────────────
 const REROUTE_DEPARTMENTS = [
